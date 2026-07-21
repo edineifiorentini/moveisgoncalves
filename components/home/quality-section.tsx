@@ -1,8 +1,8 @@
 import type { LucideIcon } from "lucide-react";
-import Image from "next/image";
 import { BadgeCheck, Gauge, PanelsTopLeft } from "lucide-react";
-import { qualityBenefits, sustainabilityImage } from "@/data/site-content";
+import { qualityBenefits } from "@/data/site-content";
 import { ButtonLink } from "@/components/shared/button-link";
+import { ProductParallaxStack } from "@/components/home/product-parallax-stack";
 
 const benefitIcons: Record<string, LucideIcon> = {
   function: PanelsTopLeft,
@@ -47,27 +47,16 @@ export function QualitySection() {
           </div>
         </div>
 
-        <figure
-          id="sustentabilidade"
-          className="relative min-h-[480px] scroll-mt-24 overflow-hidden bg-[#24302e] lg:col-span-4 lg:min-h-full"
-        >
-          <Image
-            src={sustainabilityImage.src}
-            alt={sustainabilityImage.alt}
-            fill
-            sizes="(min-width: 1024px) 34vw, 100vw"
-            className="object-cover"
-          />
-          <figcaption className="absolute inset-x-0 bottom-0 bg-black/65 px-5 py-3 text-xs text-white/80 backdrop-blur-sm">
-            <a className="underline underline-offset-3" href={sustainabilityImage.sourceUrl}>
-              {sustainabilityImage.credit}
-            </a>
-          </figcaption>
-        </figure>
+        <div className="lg:col-span-4">
+          <ProductParallaxStack />
+        </div>
 
-        <div className="section-space bg-[var(--surface-warm)] lg:col-span-4 lg:pl-12">
+        <div
+          id="sustentabilidade"
+          className="section-space scroll-mt-24 bg-[var(--surface-warm)] lg:col-span-4 lg:pl-10 xl:pl-12"
+        >
           <p className="eyebrow">Um olhar para o futuro</p>
-          <h2 className="section-title mt-4 text-balance">Crescer também é produzir com mais responsabilidade.</h2>
+          <h2 className="quality-title mt-4 text-balance">Crescer também é produzir com mais responsabilidade.</h2>
           <div className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]">
             <p>
               Investimos em energia solar para tornar nossa operação mais eficiente e reduzir o impacto ambiental

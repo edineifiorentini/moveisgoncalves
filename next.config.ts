@@ -11,7 +11,9 @@ const nextConfig: NextConfig = {
   assetPrefix: basePath || undefined,
   trailingSlash: isGitHubPages,
   images: {
-    unoptimized: isGitHubPages,
+    // The catalog already ships responsive WebP assets. Serving them directly
+    // also keeps the local vinext preview aligned with the static Pages build.
+    unoptimized: true,
   },
 };
 

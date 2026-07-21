@@ -5,6 +5,7 @@ import { HeroCarousel } from "@/components/home/hero-carousel";
 import { HistorySection } from "@/components/home/history-section";
 import { QualitySection } from "@/components/home/quality-section";
 import { RepresentativesSection } from "@/components/home/representatives-section";
+import { SectionReveal } from "@/components/shared/section-reveal";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,11 +19,21 @@ export default function HomePage() {
   return (
     <main id="main-content">
       <HeroCarousel />
-      <CategorySection />
-      <HistorySection />
-      <QualitySection />
-      <RepresentativesSection />
-      <FinalCta />
+      <SectionReveal>
+        <CategorySection />
+      </SectionReveal>
+      <SectionReveal>
+        <HistorySection />
+      </SectionReveal>
+      <SectionReveal>
+        <QualitySection />
+      </SectionReveal>
+      <SectionReveal>
+        <RepresentativesSection />
+      </SectionReveal>
+      <SectionReveal>
+        <FinalCta />
+      </SectionReveal>
     </main>
   );
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { productCategories } from "@/data/site-content";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { withBasePath } from "@/lib/site";
+import { ProductSpotlight } from "@/components/home/product-spotlight";
 
 export function CategorySection() {
   return (
@@ -25,18 +25,8 @@ export function CategorySection() {
             <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-1" />
           </Link>
 
-          <div className="relative mt-14 hidden h-[310px] max-w-[390px] sm:block" aria-hidden="true">
-            <div className="absolute left-0 top-0 h-[76%] w-[66%] overflow-hidden bg-[var(--surface-warm)]">
-              <Image
-                src={withBasePath("/images/products/kit-onix-alt.webp")}
-                alt=""
-                fill
-                sizes="260px"
-                className="object-cover object-left"
-              />
-            </div>
-            <div className="absolute bottom-0 right-0 h-[48%] w-[63%] bg-[var(--wood)] wood-grain" />
-            <div className="absolute bottom-8 left-8 h-16 w-16 border border-white/75 bg-white/20" />
+          <div className="mt-12 max-w-[430px]">
+            <ProductSpotlight />
           </div>
         </div>
 

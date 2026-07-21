@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { Search } from "lucide-react";
+import { useRef, useState } from "react";
 import type { Product } from "@/data/products";
 
 type ProductGalleryProps = {
@@ -9,6 +10,7 @@ type ProductGalleryProps = {
 };
 
 export function ProductGallery({ product }: ProductGalleryProps) {
+  const zoomFrameRef = useRef<HTMLDivElement>(null);
   const gallery = [
     product.images.isolated ? { src: product.images.isolated, label: "Produto isolado" } : null,
     product.images.ambient ? { src: product.images.ambient, label: "Produto no ambiente" } : null,
@@ -21,9 +23,28 @@ export function ProductGallery({ product }: ProductGalleryProps) {
 
   if (!selected) return null;
 
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "touch") return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+    zoomFrameRef.current?.style.setProperty("--zoom-x", `${x}%`);
+    zoomFrameRef.current?.style.setProperty("--zoom-y", `${y}%`);
+    zoomFrameRef.current?.setAttribute("data-zooming", "true");
+  };
+
+  const handlePointerLeave = () => {
+    zoomFrameRef.current?.removeAttribute("data-zooming");
+  };
+
   return (
     <div>
-      <div className="relative aspect-[4/3] overflow-hidden bg-[var(--surface-warm)]">
+      <div
+        ref={zoomFrameRef}
+        className="product-gallery-frame relative aspect-[4/3] overflow-hidden bg-[var(--surface-warm)]"
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+      >
         <Image
           key={selected.src}
           src={selected.src}
@@ -31,8 +52,12 @@ export function ProductGallery({ product }: ProductGalleryProps) {
           fill
           priority
           sizes="(min-width: 1024px) 58vw, 100vw"
-          className={selected.src.includes("isolado") ? "object-contain p-8" : "object-cover"}
+          className={`product-gallery-main ${selected.src.includes("isolado") ? "object-contain p-8" : "object-cover"}`}
         />
+        <span className="product-gallery-zoom-hint" aria-hidden="true">
+          <Search className="size-4" />
+          Passe o cursor para ampliar
+        </span>
       </div>
 
       {gallery.length > 1 ? (
