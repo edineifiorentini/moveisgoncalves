@@ -40,11 +40,14 @@ export function HistorySection() {
           </div>
         </div>
 
-        <div className="mt-14 grid border-y border-[var(--border)] sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid border-y border-[var(--border)] sm:mt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
           {historyStats.map((stat) => {
             const Icon = statIcons[stat.icon];
             return (
-              <article key={stat.title} className="border-[var(--border)] px-1 py-7 sm:px-6 lg:border-r lg:last:border-r-0">
+              <article
+                key={stat.title}
+                className="border-b border-[var(--border)] px-0 py-6 last:border-b-0 sm:px-6 sm:[&:nth-child(odd)]:border-r sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0"
+              >
                 <Icon aria-hidden="true" strokeWidth={1.4} className="size-8 text-[var(--brand-red)]" />
                 <h3 className="mt-5 font-semibold tracking-[-0.02em]">{stat.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{stat.description}</p>

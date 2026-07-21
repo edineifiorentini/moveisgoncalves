@@ -4,7 +4,7 @@ import { RepresentativesAccordion } from "./representatives-accordion";
 export function RepresentativesSection() {
   return (
     <section id="representantes" className="section-space scroll-mt-24 bg-[var(--background)]">
-      <div className="site-container grid gap-12 lg:grid-cols-12 lg:gap-10">
+      <div className="site-container grid gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-10">
         <SectionHeading
           eyebrow="Atendimento comercial"
           title="Encontre o representante da sua região."

@@ -17,7 +17,7 @@ export function RepresentativesAccordion() {
             <h3>
               <button
                 type="button"
-                className="group flex min-h-16 w-full items-center justify-between gap-5 py-4 text-left focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--brand-red)]"
+                className="group flex min-h-14 w-full items-center justify-between gap-4 py-3.5 text-left focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--brand-red)] sm:min-h-16 sm:gap-5 sm:py-4"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenId(isOpen ? null : territory.id)}
@@ -44,7 +44,7 @@ export function RepresentativesAccordion() {
                   {territory.representatives.map((representative) => (
                     <article
                       key={`${territory.id}-${representative.name}`}
-                      className="grid gap-4 bg-[var(--surface-warm)] p-4 sm:grid-cols-[1fr_auto] sm:items-center"
+                      className="grid gap-3 bg-[var(--surface-warm)] p-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-4"
                     >
                       <div>
                         <p className="font-semibold text-[var(--text-primary)]">{representative.name}</p>
@@ -65,7 +65,7 @@ export function RepresentativesAccordion() {
                           WhatsApp
                         </a>
                       ) : (
-                        <div className="flex flex-wrap items-center gap-2 sm:justify-end">
+                        <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-2">
                           <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-secondary)]">
                             <ShieldAlert aria-hidden="true" className="size-4 text-[var(--brand-red)]" />
                             Contato em revisão

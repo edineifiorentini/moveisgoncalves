@@ -14,7 +14,8 @@
   --surface-dark: #1d1d1b;
   --border: #ded9d3;
   --wood: #8a6a50;
-  --gutter: clamp(1.25rem, 4vw, 5.5rem);
+  --gutter: clamp(1rem, 4vw, 5.5rem);
+  --header-height: 72px;
   --site-width: 1540px;
 }
 
@@ -30,6 +31,8 @@
 
 html {
   background: var(--background);
+  overflow-x: clip;
+  scrollbar-gutter: stable;
   scroll-behavior: smooth;
 }
 
@@ -38,6 +41,7 @@ body {
   background: var(--background);
   color: var(--text-primary);
   font-family: var(--font-manrope), Inter, Arial, sans-serif;
+  overflow-x: clip;
   text-rendering: optimizeLegibility;
 }
 
@@ -51,6 +55,7 @@ textarea {
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 ::selection {
@@ -65,7 +70,7 @@ a {
 }
 
 .section-space {
-  padding-block: clamp(4.5rem, 8vw, 8.5rem);
+  padding-block: clamp(3.5rem, 8vw, 8.5rem);
 }
 
 .section-reveal {
@@ -102,7 +107,7 @@ a {
 }
 
 .page-title {
-  font-size: clamp(2.65rem, 4.7vw, 5.5rem);
+  font-size: clamp(2.35rem, 4.7vw, 5.5rem);
   font-weight: 450;
   letter-spacing: -0.052em;
   line-height: 1.02;
@@ -195,7 +200,7 @@ a {
 
 .product-spotlight {
   position: relative;
-  min-height: 390px;
+  min-height: clamp(340px, 110vw, 390px);
   overflow: hidden;
   border: 1px solid var(--border);
   background:
@@ -219,7 +224,7 @@ a {
 }
 
 .product-spotlight-image {
-  padding: 1.6rem 2rem 5.8rem;
+  padding: 1.35rem 1.35rem 5.6rem;
   opacity: 0;
   transform: scale(0.97) translateY(8px);
   transition:
@@ -434,6 +439,23 @@ a {
   text-underline-offset: 0.2em;
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.responsive-table {
+  font-variant-numeric: tabular-nums;
+}
+
+.responsive-table th,
+.responsive-table td {
+  overflow-wrap: anywhere;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .product-card:hover .product-image-isolated {
     opacity: 0;
@@ -447,6 +469,14 @@ a {
 }
 
 @media (min-width: 768px) {
+  :root {
+    --header-height: 80px;
+  }
+
+  .product-spotlight-image {
+    padding: 1.6rem 2rem 5.8rem;
+  }
+
   .product-gallery-zoom-hint {
     display: inline-flex;
   }
@@ -458,11 +488,17 @@ a {
 
 @media (max-width: 639px) {
   .hero-title {
-    font-size: clamp(2.55rem, 13vw, 4.1rem);
+    font-size: clamp(2.6rem, 11.5vw, 3.5rem);
   }
 
   .hero-copy-panel {
     padding-left: 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --header-height: 88px;
   }
 }
 

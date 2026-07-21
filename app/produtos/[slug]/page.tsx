@@ -61,10 +61,10 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   };
 
   return (
-    <main id="main-content" className="pt-[76px] lg:pt-[88px]">
+    <main id="main-content" className="pt-[var(--header-height)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
-      <div className="site-container py-8 md:py-12">
-        <nav aria-label="Caminho de navegação" className="mb-8">
+      <div className="site-container py-6 sm:py-8 md:py-12">
+        <nav aria-label="Caminho de navegação" className="mb-6 sm:mb-8">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-[var(--text-secondary)]">
             <li>
               <Link href="/" className="hover:text-[var(--brand-red-dark)]">
@@ -88,11 +88,11 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           </ol>
         </nav>
 
-        <section className="grid gap-10 lg:grid-cols-12 lg:gap-14" aria-labelledby="product-title">
-          <div className="lg:col-span-7">
+        <section className="grid min-w-0 gap-8 lg:grid-cols-12 lg:gap-10 xl:gap-14" aria-labelledby="product-title">
+          <div className="min-w-0 lg:col-span-7">
             <ProductGallery product={product} />
           </div>
-          <div className="lg:col-span-5 lg:pt-4">
+          <div className="min-w-0 lg:col-span-5 lg:pt-4">
             <p className="eyebrow">{categoryLabels[product.category]}</p>
             <h1 id="product-title" className="page-title mt-4 text-balance">
               {product.name}
@@ -105,8 +105,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
             <div className="mt-9 border-t border-[var(--border)] pt-7">
               <h2 className="text-lg font-semibold tracking-[-0.02em]">Medidas disponíveis</h2>
-              <div className="mt-4 overflow-x-auto">
-                <table className="w-full min-w-[420px] border-collapse text-left text-sm">
+              <div className="mt-4 min-w-0 overflow-x-auto">
+                <table className="responsive-table w-full table-fixed border-collapse text-left text-xs sm:text-sm">
                   <thead>
                     <tr className="border-b border-[var(--border)] text-[var(--text-muted)]">
                       {product.dimensions.some((dimension) => dimension.label) ? <th className="py-3 pr-4 font-semibold">Modelo</th> : null}

@@ -8,29 +8,31 @@ import { ProductSpotlight } from "@/components/home/product-spotlight";
 export function CategorySection() {
   return (
     <section className="section-space bg-[var(--background)]" aria-labelledby="categorias-title">
-      <div className="site-container grid gap-14 lg:grid-cols-12 lg:gap-10">
-        <div className="lg:col-span-4 xl:col-span-4">
-          <div id="categorias-title">
-            <SectionHeading
-              eyebrow="Nossos produtos"
-              title="Móveis para cada espaço da sua casa."
-              description="Explore soluções pensadas para diferentes ambientes e descubra novas possibilidades para compor o seu lar."
-            />
+      <div className="site-container grid gap-12 xl:grid-cols-12 xl:gap-10">
+        <div className="md:grid md:grid-cols-[minmax(0,1fr)_minmax(280px,0.85fr)] md:items-end md:gap-8 xl:col-span-4 xl:block">
+          <div>
+            <div id="categorias-title">
+              <SectionHeading
+                eyebrow="Nossos produtos"
+                title="Móveis para cada espaço da sua casa."
+                description="Explore soluções pensadas para diferentes ambientes e descubra novas possibilidades para compor o seu lar."
+              />
+            </div>
+            <Link
+              href="/produtos"
+              className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)]"
+            >
+              Explorar todos os produtos
+              <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
-          <Link
-            href="/produtos"
-            className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)]"
-          >
-            Explorar todos os produtos
-            <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-1" />
-          </Link>
 
-          <div className="mt-12 max-w-[430px]">
+          <div className="mt-10 max-w-[430px] md:mt-0 xl:mt-12">
             <ProductSpotlight />
           </div>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:col-span-8 xl:col-span-8">
+        <div className="grid gap-4 sm:grid-cols-2 xl:col-span-8 xl:gap-5">
           {productCategories.map((category) => (
             <Link
               key={category.title}
@@ -52,7 +54,7 @@ export function CategorySection() {
                   }`}
                 />
               </div>
-              <div className="grid min-h-32 grid-cols-[1fr_auto] gap-4 p-5 md:p-6">
+              <div className="grid min-h-[116px] grid-cols-[minmax(0,1fr)_auto] gap-4 p-4 sm:p-5 md:p-6">
                 <div>
                   <h3 className="text-lg font-semibold tracking-[-0.02em] text-[var(--text-primary)]">
                     {category.title}

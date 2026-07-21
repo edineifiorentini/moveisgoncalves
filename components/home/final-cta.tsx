@@ -6,7 +6,7 @@ export function FinalCta() {
   return (
     <section className="bg-[var(--surface-warm)]" aria-labelledby="final-cta-title">
       <div className="grid lg:grid-cols-2">
-        <div className="relative min-h-[360px] overflow-hidden lg:min-h-[520px]">
+        <div className="relative min-h-[280px] overflow-hidden sm:min-h-[360px] lg:min-h-[520px]">
           <Image
             src={withBasePath("/images/products/comoda-italia-ambiente.webp")}
             alt="Cômoda Itália em um quarto claro"
@@ -15,7 +15,7 @@ export function FinalCta() {
             className="object-cover"
           />
         </div>
-        <div className="flex items-center px-[var(--gutter)] py-14 lg:px-[clamp(3rem,7vw,8rem)] lg:py-20">
+        <div className="flex items-center px-[var(--gutter)] py-12 sm:py-14 lg:px-[clamp(3rem,7vw,8rem)] lg:py-20">
           <div className="max-w-xl">
             <p className="eyebrow">Para o seu jeito de viver</p>
             <h2 id="final-cta-title" className="section-title mt-4 text-balance">

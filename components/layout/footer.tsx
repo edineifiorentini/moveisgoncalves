@@ -9,14 +9,14 @@ export function Footer() {
 
   return (
     <footer id="contato" className="bg-[var(--surface-dark)] text-white">
-      <div className="site-container grid gap-12 py-14 md:grid-cols-12 md:py-20">
+      <div className="site-container grid gap-10 py-12 sm:py-14 md:grid-cols-12 md:py-20">
         <div className="md:col-span-5 lg:col-span-4">
           <Image
             src={withBasePath("/images/logo/moveis-goncalves.png")}
             alt="Móveis Gonçalves"
             width={350}
             height={100}
-            className="h-auto w-[190px]"
+            className="h-auto w-[170px] sm:w-[190px]"
           />
           <p className="mt-6 max-w-sm text-sm leading-6 text-white/70">
             Desde 1990, produzindo móveis modulares em Tapira-PR.

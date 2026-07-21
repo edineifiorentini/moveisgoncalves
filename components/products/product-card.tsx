@@ -35,7 +35,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article
       ref={cardRef}
-      className="product-card group/card flex h-full flex-col border border-[var(--border)] bg-[var(--surface)]"
+      className="product-card group/card flex h-full min-w-0 flex-col border border-[var(--border)] bg-[var(--surface)]"
       data-show-ambient={showAmbient ? "true" : "false"}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-[var(--surface-warm)]">
@@ -73,7 +73,7 @@ export function ProductCard({ product }: ProductCardProps) {
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
         <h2 className="text-xl font-semibold tracking-[-0.025em] text-[var(--text-primary)]">
           <Link
             href={`/produtos/${product.slug}`}

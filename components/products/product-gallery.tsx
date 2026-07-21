@@ -52,7 +52,7 @@ export function ProductGallery({ product }: ProductGalleryProps) {
           fill
           priority
           sizes="(min-width: 1024px) 58vw, 100vw"
-          className={`product-gallery-main ${selected.src.includes("isolado") ? "object-contain p-8" : "object-cover"}`}
+          className={`product-gallery-main ${selected.src.includes("isolado") ? "object-contain p-5 sm:p-8" : "object-cover"}`}
         />
         <span className="product-gallery-zoom-hint" aria-hidden="true">
           <Search className="size-4" />
@@ -61,7 +61,7 @@ export function ProductGallery({ product }: ProductGalleryProps) {
       </div>
 
       {gallery.length > 1 ? (
-        <div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4" aria-label="Galeria do produto">
+        <div className="mt-2.5 grid grid-cols-3 gap-2.5 sm:mt-3 sm:grid-cols-4 sm:gap-3" aria-label="Galeria do produto">
           {gallery.map((image, index) => (
             <button
               key={image.src}

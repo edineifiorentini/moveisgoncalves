@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { company } from "@/data/company";
 import { navigation } from "@/data/navigation";
 import { withBasePath } from "@/lib/site";
 
@@ -18,6 +19,15 @@ export function Header() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1280px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
   }, []);
 
   useEffect(() => {
@@ -62,11 +72,11 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
         scrolled || open
-          ? "border-[var(--border)] bg-[rgba(255,253,250,0.96)] backdrop-blur-sm"
-          : "border-transparent bg-[rgba(255,253,250,0.92)]"
+          ? "border-[var(--border)] bg-[rgba(255,253,250,0.985)]"
+          : "border-transparent bg-[rgba(255,253,250,0.96)]"
       }`}
     >
-      <div className="site-container flex h-[76px] items-center justify-between gap-6 lg:h-[88px]">
+      <div className="site-container relative z-10 flex h-[var(--header-height)] items-center justify-between gap-4 sm:gap-6">
         <Link
           href="/"
           aria-label="Móveis Gonçalves — página inicial"
@@ -77,7 +87,7 @@ export function Header() {
             alt="Móveis Gonçalves"
             width={350}
             height={100}
-            className="h-auto w-[154px] lg:w-[180px]"
+            className="h-auto w-[146px] sm:w-[154px] xl:w-[180px]"
             priority
           />
         </Link>
@@ -92,7 +102,7 @@ export function Header() {
 
         <Link
           href="/produtos"
-          className="hidden min-h-11 items-center bg-[var(--brand-red)] px-5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)] lg:inline-flex"
+          className="hidden min-h-11 items-center bg-[var(--brand-red)] px-5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)] xl:inline-flex"
         >
           Ver produtos
         </Link>
@@ -114,27 +124,41 @@ export function Header() {
         <div
           ref={panelRef}
           id="menu-mobile"
-          className="fixed inset-0 top-[76px] z-0 bg-[var(--surface)] px-[var(--gutter)] py-10 xl:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu principal"
+          className="fixed inset-x-0 bottom-0 top-[var(--header-height)] z-0 h-[calc(100dvh-var(--header-height))] overflow-y-auto overscroll-contain bg-[var(--surface)] px-[var(--gutter)] xl:hidden"
         >
-          <nav aria-label="Navegação mobile" className="mx-auto flex max-w-xl flex-col">
-            {navigation.map((item) => (
+          <div className="mx-auto flex min-h-full max-w-2xl flex-col py-6 sm:py-8">
+            <p className="eyebrow">Navegação</p>
+            <nav aria-label="Navegação mobile" className="mt-3 flex flex-col">
+              {navigation.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="border-b border-[var(--border)] py-3.5 text-xl font-medium tracking-[-0.03em] text-[var(--text-primary)] transition-colors hover:text-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-red)] sm:py-4 sm:text-2xl"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="mt-auto pt-7">
               <Link
-                key={item.href}
-                href={item.href}
+                href="/produtos"
                 onClick={() => setOpen(false)}
-                className="border-b border-[var(--border)] py-5 text-2xl font-medium tracking-[-0.03em] text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-red)]"
+                className="inline-flex min-h-12 w-full items-center justify-center bg-[var(--brand-red)] px-6 font-semibold text-white transition-colors hover:bg-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)]"
               >
-                {item.label}
+                Explorar o catálogo
               </Link>
-            ))}
-            <Link
-              href="/produtos"
-              onClick={() => setOpen(false)}
-              className="mt-8 inline-flex min-h-12 items-center justify-center bg-[var(--brand-red)] px-6 font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)]"
-            >
-              Ver produtos
-            </Link>
-          </nav>
+              <a
+                href={`mailto:${company.email}`}
+                className="mt-4 block break-all text-center text-sm text-[var(--text-secondary)] underline decoration-[var(--border)] underline-offset-4 hover:text-[var(--brand-red-dark)]"
+              >
+                {company.email}
+              </a>
+            </div>
+          </div>
         </div>
       ) : null}
     </header>

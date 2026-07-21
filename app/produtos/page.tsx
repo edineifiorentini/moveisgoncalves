@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <main id="main-content" className="pt-[76px] lg:pt-[88px]">
+    <main id="main-content" className="pt-[var(--header-height)]">
       <section className="relative overflow-hidden bg-[var(--surface-warm)]">
-        <div className="site-container grid min-h-[520px] items-center gap-10 py-16 lg:grid-cols-12 lg:py-20">
+        <div className="site-container grid min-h-[520px] items-center gap-8 py-12 sm:py-14 lg:grid-cols-12 lg:gap-10 lg:py-20">
           <div className="relative z-10 lg:col-span-7">
             <p className="eyebrow">Catálogo de produtos</p>
             <h1 className="page-title mt-5 max-w-[13ch] text-balance">Encontre o móvel certo para cada ambiente.</h1>
@@ -25,7 +25,7 @@ export default function ProductsPage() {
               encontrar a solução ideal para sua casa.
             </p>
           </div>
-          <div className="relative min-h-[300px] lg:col-span-5 lg:min-h-[430px]">
+          <div className="relative min-h-[240px] sm:min-h-[300px] lg:col-span-5 lg:min-h-[430px]">
             <div className="absolute inset-y-0 left-[18%] w-px bg-[var(--brand-red)]/35" />
             <div className="absolute inset-x-0 bottom-0 h-[78%] bg-[var(--surface)]" />
             <Image

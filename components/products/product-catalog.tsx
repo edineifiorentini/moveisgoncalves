@@ -99,7 +99,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
   return (
     <>
       <section className="border-b border-[var(--border)] bg-[var(--surface)]" aria-label="Filtros do catálogo">
-        <div className="site-container py-8 md:py-10">
+        <div className="site-container py-6 sm:py-8 md:py-10">
           <div className="relative">
             <label htmlFor="product-search" className="sr-only">
               Busque por nome ou tipo de móvel
@@ -110,12 +110,13 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
               type="search"
               value={query}
               onChange={(event) => updateParam("busca", event.target.value)}
-              placeholder="Busque por nome ou tipo de móvel"
-              className="min-h-14 w-full border border-[var(--border)] bg-[var(--background)] pl-12 pr-4 text-base text-[var(--text-primary)] outline-none transition-colors placeholder:text-[var(--text-muted)] focus:border-[var(--brand-red)]"
+              placeholder="Busque por nome ou tipo de móvel…"
+              autoComplete="off"
+              className="min-h-13 w-full border border-[var(--border)] bg-[var(--background)] pl-12 pr-4 text-base text-[var(--text-primary)] transition-colors placeholder:text-[var(--text-muted)] focus:border-[var(--brand-red)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-red)] sm:min-h-14"
             />
           </div>
 
-          <div className="mt-6 flex gap-2 overflow-x-auto pb-2" aria-label="Categorias de produtos">
+          <div className="no-scrollbar mt-5 flex gap-2 overflow-x-auto pb-1 sm:mt-6" aria-label="Categorias de produtos">
             {categories.map((item) => {
               const selected = category === item.value;
               return (
@@ -136,7 +137,7 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
             })}
           </div>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-5 grid gap-3 min-[380px]:grid-cols-2 lg:grid-cols-5">
             <FilterSelect label="Tipo" value={type} onChange={(value) => updateParam("tipo", value)}>
               <option value="">Todos os tipos</option>
               {typeOptions.map((option) => (
@@ -165,7 +166,12 @@ export function ProductCatalog({ products }: ProductCatalogProps) {
               <option value="1.01:1.80">De 1,01 a 1,80 m</option>
               <option value="1.81:99">Acima de 1,80 m</option>
             </FilterSelect>
-            <FilterSelect label="Ordenar" value={order} onChange={(value) => updateParam("ordem", value)}>
+            <FilterSelect
+              label="Ordenar"
+              value={order}
+              onChange={(value) => updateParam("ordem", value)}
+              className="min-[380px]:col-span-2 lg:col-span-1"
+            >
               <option value="catalogo">Ordem do catálogo</option>
               <option value="nome">Nome de A a Z</option>
               <option value="menor-largura">Menor largura</option>
@@ -248,20 +254,22 @@ type FilterSelectProps = {
   value: string;
   onChange: (value: string) => void;
   children: React.ReactNode;
+  className?: string;
 };
 
-function FilterSelect({ label, value, onChange, children }: FilterSelectProps) {
+function FilterSelect({ label, value, onChange, children, className = "" }: FilterSelectProps) {
   const id = `filter-${label.toLowerCase().replaceAll(" ", "-")}`;
   return (
-    <div>
+    <div className={className}>
       <label htmlFor={id} className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--text-muted)]">
         {label}
       </label>
       <select
         id={id}
+        name={id}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="min-h-12 w-full border border-[var(--border)] bg-white px-3 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--brand-red)]"
+        className="min-h-12 w-full border border-[var(--border)] bg-white px-3 text-sm text-[var(--text-primary)] focus:border-[var(--brand-red)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-red)]"
       >
         {children}
       </select>

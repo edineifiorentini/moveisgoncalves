@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main id="main-content" className="grid min-h-[70vh] place-items-center px-[var(--gutter)] pt-[76px] text-center lg:pt-[88px]">
+    <main id="main-content" className="grid min-h-[70vh] place-items-center px-[var(--gutter)] pt-[var(--header-height)] text-center">
       <div>
         <p className="eyebrow">Página não encontrada</p>
         <h1 className="page-title mt-4">Este caminho não existe.</h1>

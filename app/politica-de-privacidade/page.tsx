@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main id="main-content" className="pt-[76px] lg:pt-[88px]">
-      <article className="site-container max-w-4xl py-16 md:py-24">
+    <main id="main-content" className="pt-[var(--header-height)]">
+      <article className="site-container max-w-4xl py-12 sm:py-16 md:py-24">
         <p className="eyebrow">Privacidade</p>
         <h1 className="page-title mt-5 text-balance">Política de Privacidade</h1>
         <p className="mt-6 text-base leading-7 text-[var(--text-secondary)]">
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
           durante a navegação.
         </p>
 
-        <div className="prose-content mt-12 space-y-10">
+        <div className="prose-content mt-10 space-y-9 sm:mt-12 sm:space-y-10">
           <section>
             <h2>1. Informações fornecidas por você</h2>
             <p>
