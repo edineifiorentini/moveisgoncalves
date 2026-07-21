@@ -1,0 +1,58 @@
+import type { LucideIcon } from "lucide-react";
+import { CalendarDays, Factory, ScanLine, SunMedium } from "lucide-react";
+import { historyStats } from "@/data/site-content";
+import { SectionHeading } from "@/components/shared/section-heading";
+
+const statIcons: Record<string, LucideIcon> = {
+  calendar: CalendarDays,
+  factory: Factory,
+  production: ScanLine,
+  solar: SunMedium,
+};
+
+export function HistorySection() {
+  return (
+    <section id="historia" className="section-space scroll-mt-24 bg-[var(--surface-warm)]">
+      <div className="site-container">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+          <SectionHeading
+            eyebrow="Nossa história"
+            title="Uma história construída com trabalho, evolução e confiança."
+            className="lg:col-span-4"
+          />
+          <div className="space-y-5 text-base leading-7 text-[var(--text-secondary)] lg:col-span-4">
+            <p>
+              Em 1990, a Móveis Gonçalves iniciou sua trajetória em Tapira, no Paraná, em uma estrutura de apenas
+              80 m² e com produção artesanal. O que começou pequeno cresceu com dedicação, investimento e
+              compromisso com as famílias que levam nossos móveis para dentro de casa.
+            </p>
+          </div>
+          <div className="space-y-5 text-base leading-7 text-[var(--text-secondary)] lg:col-span-4">
+            <p>
+              Hoje, contamos com uma fábrica de aproximadamente 2.000 m², equipada com máquinas modernas que
+              proporcionam mais precisão, eficiência e qualidade em cada etapa da produção.
+            </p>
+            <p>
+              Mesmo com toda essa evolução, mantemos o princípio que orienta nosso trabalho desde o início:
+              oferecer móveis funcionais, bem construídos e acessíveis, capazes de valorizar o lar e facilitar a
+              rotina.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-14 grid border-y border-[var(--border)] sm:grid-cols-2 lg:grid-cols-4">
+          {historyStats.map((stat) => {
+            const Icon = statIcons[stat.icon];
+            return (
+              <article key={stat.title} className="border-[var(--border)] px-1 py-7 sm:px-6 lg:border-r lg:last:border-r-0">
+                <Icon aria-hidden="true" strokeWidth={1.4} className="size-8 text-[var(--brand-red)]" />
+                <h3 className="mt-5 font-semibold tracking-[-0.02em]">{stat.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{stat.description}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
