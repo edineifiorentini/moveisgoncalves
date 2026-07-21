@@ -5,8 +5,8 @@ import { ChevronRight } from "lucide-react";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductCard } from "@/components/products/product-card";
 import { ButtonLink } from "@/components/shared/button-link";
-import { company } from "@/data/company";
 import { categoryLabels, productBySlug, products } from "@/data/products";
+import { absoluteUrl } from "@/lib/site";
 
 type ProductDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -15,6 +15,8 @@ type ProductDetailPageProps = {
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
 }
+
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: ProductDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -25,11 +27,11 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
   return {
     title: `${product.name} | Móveis Gonçalves`,
     description: `Conheça o ${product.name}, suas medidas e acabamentos disponíveis.`,
-    alternates: { canonical: `/produtos/${product.slug}` },
+    alternates: { canonical: absoluteUrl(`/produtos/${product.slug}`) },
     openGraph: {
       title: `${product.name} | Móveis Gonçalves`,
       description: `Conheça o ${product.name}, suas medidas e acabamentos disponíveis.`,
-      images: socialImage ? [socialImage] : [],
+      images: socialImage ? [absoluteUrl(socialImage)] : [],
     },
   };
 }
@@ -49,7 +51,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
     category: categoryLabels[product.category],
     image: [product.images.isolated, product.images.ambient]
       .filter((image): image is string => Boolean(image))
-      .map((image) => new URL(image, company.website).toString()),
+      .map(absoluteUrl),
     brand: { "@type": "Brand", name: "Móveis Gonçalves" },
     additionalProperty: product.dimensions.flatMap((dimension) => [
       { "@type": "PropertyValue", name: "Altura", value: dimension.height },

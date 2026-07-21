@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { company } from "@/data/company";
 import { navigation, socialLinks } from "@/data/navigation";
+import { withBasePath } from "@/lib/site";
 
 export function Footer() {
   const visibleSocialLinks = socialLinks.filter((link) => link.url);
@@ -11,7 +12,7 @@ export function Footer() {
       <div className="site-container grid gap-12 py-14 md:grid-cols-12 md:py-20">
         <div className="md:col-span-5 lg:col-span-4">
           <Image
-            src="/images/logo/moveis-goncalves.png"
+            src={withBasePath("/images/logo/moveis-goncalves.png")}
             alt="Móveis Gonçalves"
             width={350}
             height={100}

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade | Móveis Gonçalves",
   description: "Saiba como o site institucional da Móveis Gonçalves trata informações de navegação e contato.",
-  alternates: { canonical: "/politica-de-privacidade" },
+  alternates: { canonical: absoluteUrl("/politica-de-privacidade") },
 };
 
 export default function PrivacyPage() {

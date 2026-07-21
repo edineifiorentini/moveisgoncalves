@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/shared/button-link";
+import { withBasePath } from "@/lib/site";
 
 export function FinalCta() {
   return (
@@ -7,7 +8,7 @@ export function FinalCta() {
       <div className="grid lg:grid-cols-2">
         <div className="relative min-h-[360px] overflow-hidden lg:min-h-[520px]">
           <Image
-            src="/images/products/comoda-italia-ambiente.webp"
+            src={withBasePath("/images/products/comoda-italia-ambiente.webp")}
             alt="Cômoda Itália em um quarto claro"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

@@ -1,3 +1,5 @@
+import { withBasePath } from "@/lib/site";
+
 export type ProductCategory =
   | "cozinha-area-servico"
   | "quarto"
@@ -42,9 +44,9 @@ const finish = {
 } as const;
 
 const images = (slug: string, ambient = true, details?: string[]) => ({
-  isolated: `/images/products/${slug}-isolado.webp`,
-  ...(ambient ? { ambient: `/images/products/${slug}-ambiente.webp` } : {}),
-  ...(details ? { details } : {}),
+  isolated: withBasePath(`/images/products/${slug}-isolado.webp`),
+  ...(ambient ? { ambient: withBasePath(`/images/products/${slug}-ambiente.webp`) } : {}),
+  ...(details ? { details: details.map(withBasePath) } : {}),
 });
 
 export const products: Product[] = [

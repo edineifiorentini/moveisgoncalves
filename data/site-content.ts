@@ -1,18 +1,19 @@
 import type { ProductCategory } from "./products";
+import { withBasePath } from "@/lib/site";
 
 export const heroSlides = [
   {
-    src: "/images/products/cozinha-veneza-ambiente.webp",
+    src: withBasePath("/images/products/cozinha-veneza-ambiente.webp"),
     alt: "Cozinha Veneza em ambiente integrado e acolhedor",
     position: "58% center",
   },
   {
-    src: "/images/products/kit-caribe-ambiente.webp",
+    src: withBasePath("/images/products/kit-caribe-ambiente.webp"),
     alt: "Kit Caribe compondo uma cozinha compacta",
     position: "60% center",
   },
   {
-    src: "/images/products/roupeiro-paris-ambiente.webp",
+    src: withBasePath("/images/products/roupeiro-paris-ambiente.webp"),
     alt: "Roupeiro Paris em um quarto claro",
     position: "64% center",
   },
@@ -29,28 +30,28 @@ export const productCategories: Array<{
     title: "Cozinha e área de serviço",
     description: "Organização para simplificar cada tarefa.",
     category: "cozinha-area-servico",
-    image: "/images/products/cozinha-veneza-ambiente.webp",
+    image: withBasePath("/images/products/cozinha-veneza-ambiente.webp"),
     alt: "Cozinha modular Veneza",
   },
   {
     title: "Quarto",
     description: "Mais espaço para guardar, descansar e viver.",
     category: "quarto",
-    image: "/images/products/roupeiro-paris-ambiente.webp",
+    image: withBasePath("/images/products/roupeiro-paris-ambiente.webp"),
     alt: "Roupeiro Paris em ambiente de quarto",
   },
   {
     title: "Sala",
     description: "Funcionalidade que também faz parte da decoração.",
     category: "sala",
-    image: "/images/products/painel-monaco-isolado.webp",
+    image: withBasePath("/images/products/painel-monaco-isolado.webp"),
     alt: "Painel Mônaco para sala",
   },
   {
     title: "Multiuso e escritório",
     description: "Soluções inteligentes para cada canto.",
     category: "escritorio",
-    image: "/images/products/mesa-escrivaninha-suellen-ambiente.webp",
+    image: withBasePath("/images/products/mesa-escrivaninha-suellen-ambiente.webp"),
     alt: "Mesa escrivaninha Suellen em ambiente de trabalho",
   },
 ];
@@ -97,7 +98,7 @@ export const qualityBenefits = [
 ];
 
 export const sustainabilityImage = {
-  src: "/images/sustainability/energia-solar.webp",
+  src: withBasePath("/images/sustainability/energia-solar.webp"),
   alt: "Painéis solares instalados sobre uma cobertura industrial ao pôr do sol",
   credit: "Imagem ilustrativa: Nuno Marques / Unsplash",
   sourceUrl: "https://unsplash.com/photos/black-and-white-solar-panels-0GbrjL3vZF4",

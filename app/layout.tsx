@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { company } from "@/data/company";
+import { absoluteUrl, siteRootUrl } from "@/lib/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -12,7 +13,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(company.website),
+  metadataBase: new URL(siteRootUrl),
   title: {
     default: "Móveis Gonçalves | Móveis Modulares desde 1990",
     template: "%s",
@@ -20,16 +21,17 @@ export const metadata: Metadata = {
   description:
     "Móveis modulares para cozinhas, áreas de serviço, quartos e salas, produzidos em Tapira-PR desde 1990.",
   icons: {
-    icon: "/images/logo/moveis-goncalves.png",
-    shortcut: "/images/logo/moveis-goncalves.png",
+    icon: absoluteUrl("/images/logo/moveis-goncalves.png"),
+    shortcut: absoluteUrl("/images/logo/moveis-goncalves.png"),
   },
   openGraph: {
     type: "website",
     locale: "pt_BR",
     siteName: "Móveis Gonçalves",
+    url: siteRootUrl,
     images: [
       {
-        url: "/og.png",
+        url: absoluteUrl("/og.png"),
         width: 1200,
         height: 630,
         alt: "Móveis Gonçalves — Móveis modulares desde 1990",
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og.png"],
+    images: [absoluteUrl("/og.png")],
   },
 };
 
@@ -46,7 +48,7 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: company.name,
-  url: company.website,
+  url: siteRootUrl,
   foundingDate: String(company.founded),
   email: company.email,
   telephone: company.phones,

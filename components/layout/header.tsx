@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { navigation } from "@/data/navigation";
+import { withBasePath } from "@/lib/site";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -72,7 +73,7 @@ export function Header() {
           className="relative z-10 shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)]"
         >
           <Image
-            src="/images/logo/moveis-goncalves.png"
+            src={withBasePath("/images/logo/moveis-goncalves.png")}
             alt="Móveis Gonçalves"
             width={350}
             height={100}

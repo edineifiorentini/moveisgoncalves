@@ -3,12 +3,13 @@ import Image from "next/image";
 import { Suspense } from "react";
 import { ProductCatalog } from "@/components/products/product-catalog";
 import { products } from "@/data/products";
+import { absoluteUrl, withBasePath } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Catálogo de Produtos | Móveis Gonçalves",
   description:
     "Conheça a linha de móveis modulares da Móveis Gonçalves para cozinhas, quartos, salas, áreas de serviço e espaços multiuso.",
-  alternates: { canonical: "/produtos" },
+  alternates: { canonical: absoluteUrl("/produtos") },
 };
 
 export default function ProductsPage() {
@@ -28,7 +29,7 @@ export default function ProductsPage() {
             <div className="absolute inset-y-0 left-[18%] w-px bg-[var(--brand-red)]/35" />
             <div className="absolute inset-x-0 bottom-0 h-[78%] bg-[var(--surface)]" />
             <Image
-              src="/images/products/cozinha-veneza-isolado.webp"
+              src={withBasePath("/images/products/cozinha-veneza-isolado.webp")}
               alt="Cozinha modular Veneza"
               fill
               priority

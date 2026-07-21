@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { productCategories } from "@/data/site-content";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { withBasePath } from "@/lib/site";
 
 export function CategorySection() {
   return (
@@ -27,7 +28,7 @@ export function CategorySection() {
           <div className="relative mt-14 hidden h-[310px] max-w-[390px] sm:block" aria-hidden="true">
             <div className="absolute left-0 top-0 h-[76%] w-[66%] overflow-hidden bg-[var(--surface-warm)]">
               <Image
-                src="/images/products/kit-onix-alt.webp"
+                src={withBasePath("/images/products/kit-onix-alt.webp")}
                 alt=""
                 fill
                 sizes="260px"
