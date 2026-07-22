@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { ProductCatalog } from "@/components/products/product-catalog";
 import { products } from "@/data/products";
 import { absoluteUrl, withBasePath } from "@/lib/site";
+import { SplitText } from "@/components/react-bits/split-text";
 
 export const metadata: Metadata = {
   title: "Catálogo de Produtos | Móveis Gonçalves",
@@ -19,7 +20,12 @@ export default function ProductsPage() {
         <div className="site-container grid min-h-[520px] items-center gap-8 py-12 sm:py-14 lg:grid-cols-12 lg:gap-10 lg:py-20">
           <div className="relative z-10 lg:col-span-7">
             <p className="eyebrow">Catálogo de produtos</p>
-            <h1 className="page-title mt-5 max-w-[13ch] text-balance">Encontre o móvel certo para cada ambiente.</h1>
+            <SplitText
+              tag="h1"
+              text="Encontre o móvel certo para cada ambiente."
+              className="page-title mt-5 max-w-[13ch] text-balance"
+              threshold={0.02}
+            />
             <p className="mt-6 max-w-[60ch] text-base leading-7 text-[var(--text-secondary)] md:text-lg md:leading-8">
               Explore nossa linha de móveis modulares e filtre por ambiente, tipo, medidas ou acabamento para
               encontrar a solução ideal para sua casa.

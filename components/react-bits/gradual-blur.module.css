@@ -1,0 +1,15 @@
+.root {
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .layer {
+    background: linear-gradient(to bottom, rgb(29 29 27 / 0.05), rgb(29 29 27 / 0.55));
+  }
+}

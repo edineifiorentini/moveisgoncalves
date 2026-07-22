@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { BorderGlow } from "@/components/react-bits/border-glow";
+import { StarBorder } from "@/components/react-bits/star-border";
 
 type ButtonLinkProps = {
   href: string;
@@ -21,13 +23,30 @@ export function ButtonLink({
     light: "border-white/65 text-white hover:bg-white hover:text-[var(--text-primary)]",
   };
 
-  return (
+  const link = (
     <Link
       href={href}
-      className={`group inline-flex min-h-11 items-center justify-center gap-2 border px-4 py-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)] sm:px-5 ${variants[variant]} ${className}`}
+      className={`group inline-flex min-h-11 w-full items-center justify-center gap-2 border px-4 py-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)] sm:px-5 ${variants[variant]}`}
     >
       {children}
       <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-1" />
     </Link>
+  );
+
+  if (variant === "primary") {
+    return (
+      <StarBorder className={className} color="#ffb092" speed="6.8s" thickness={1}>
+        {link}
+      </StarBorder>
+    );
+  }
+
+  return (
+    <BorderGlow
+      className={className}
+      colors={variant === "light" ? ["#fffdfa", "#dca184", "#c92a00"] : ["#c92a00", "#dca184", "#fffdfa"]}
+    >
+      {link}
+    </BorderGlow>
   );
 }

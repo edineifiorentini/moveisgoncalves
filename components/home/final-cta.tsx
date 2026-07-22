@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/shared/button-link";
+import { SplitText } from "@/components/react-bits/split-text";
 import { withBasePath } from "@/lib/site";
 
 export function FinalCta() {
@@ -18,9 +19,12 @@ export function FinalCta() {
         <div className="flex items-center px-[var(--gutter)] py-12 sm:py-14 lg:px-[clamp(3rem,7vw,8rem)] lg:py-20">
           <div className="max-w-xl">
             <p className="eyebrow">Para o seu jeito de viver</p>
-            <h2 id="final-cta-title" className="section-title mt-4 text-balance">
-              Qualidade e funcionalidade para transformar a sua casa.
-            </h2>
+            <SplitText
+              tag="h2"
+              id="final-cta-title"
+              text="Qualidade e funcionalidade para transformar a sua casa."
+              className="section-title mt-4 text-balance"
+            />
             <p className="mt-6 text-base leading-7 text-[var(--text-secondary)] md:text-lg">
               Conheça nossa linha de móveis modulares e encontre soluções que combinam com o seu espaço, sua rotina
               e o seu jeito de viver.

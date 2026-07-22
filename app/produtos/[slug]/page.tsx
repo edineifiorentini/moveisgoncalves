@@ -7,6 +7,7 @@ import { ProductCard } from "@/components/products/product-card";
 import { ButtonLink } from "@/components/shared/button-link";
 import { categoryLabels, productBySlug, products } from "@/data/products";
 import { absoluteUrl } from "@/lib/site";
+import { SplitText } from "@/components/react-bits/split-text";
 
 type ProductDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -94,9 +95,13 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           </div>
           <div className="min-w-0 lg:col-span-5 lg:pt-4">
             <p className="eyebrow">{categoryLabels[product.category]}</p>
-            <h1 id="product-title" className="page-title mt-4 text-balance">
-              {product.name}
-            </h1>
+            <SplitText
+              tag="h1"
+              id="product-title"
+              text={product.name}
+              className="page-title mt-4 text-balance"
+              threshold={0.02}
+            />
             <p className="mt-3 text-lg font-medium text-[var(--text-secondary)]">{product.type}</p>
             <p className="mt-6 text-base leading-7 text-[var(--text-secondary)]">
               {product.description ??
@@ -160,9 +165,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         <section className="section-space border-t border-[var(--border)] bg-[var(--background)]" aria-labelledby="related-title">
           <div className="site-container">
             <p className="eyebrow">Você também pode gostar</p>
-            <h2 id="related-title" className="section-title mt-4">
-              Produtos relacionados
-            </h2>
+            <SplitText tag="h2" id="related-title" text="Produtos relacionados" className="section-title mt-4" />
             <div className="mt-9 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {related.map((item) => (
                 <ProductCard key={item.id} product={item} />

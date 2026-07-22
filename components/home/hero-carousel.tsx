@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { heroSlides } from "@/data/site-content";
 import { ButtonLink } from "@/components/shared/button-link";
+import { SplitText } from "@/components/react-bits/split-text";
 
 export function HeroCarousel() {
   const [active, setActive] = useState(0);
@@ -79,9 +80,14 @@ export function HeroCarousel() {
       <div className="site-container relative z-10 flex min-h-[calc(760px-var(--header-height))] items-center pb-32 pt-8 sm:min-h-[calc(720px-var(--header-height))] sm:pb-32 sm:pt-10 lg:min-h-[calc(800px-var(--header-height))] lg:pb-36 lg:pt-12">
         <div className="hero-copy-panel max-w-[650px] text-white">
           <p className="eyebrow text-white/75">Móveis modulares desde 1990</p>
-          <h1 className="hero-title mt-5 max-w-[12ch] text-balance">
-            Levando qualidade e conforto à sua casa.
-          </h1>
+          <SplitText
+            tag="h1"
+            text="Levando qualidade e conforto à sua casa."
+            className="hero-title mt-5 max-w-[12ch] text-balance"
+            delay={62}
+            duration={0.9}
+            threshold={0.02}
+          />
           <p className="mt-6 max-w-[54ch] text-base leading-7 text-white/82 md:text-lg md:leading-8">
             Móveis modulares para cozinhas, áreas de serviço, quartos e salas, desenvolvidos para trazer mais
             praticidade, organização e beleza para o dia a dia.

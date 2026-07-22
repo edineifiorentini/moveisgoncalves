@@ -3,6 +3,7 @@ import { BadgeCheck, Gauge, PanelsTopLeft } from "lucide-react";
 import { qualityBenefits } from "@/data/site-content";
 import { ButtonLink } from "@/components/shared/button-link";
 import { ProductParallaxStack } from "@/components/home/product-parallax-stack";
+import { SplitText } from "@/components/react-bits/split-text";
 
 const benefitIcons: Record<string, LucideIcon> = {
   function: PanelsTopLeft,
@@ -16,7 +17,11 @@ export function QualitySection() {
       <div className="site-container grid lg:grid-cols-12">
         <div className="section-space border-b border-[var(--border)] lg:col-span-4 lg:border-b-0 lg:border-r lg:pr-12">
           <p className="eyebrow">Qualidade em cada detalhe</p>
-          <h2 className="section-title mt-4 text-balance">Feitos para o dia a dia. Pensados para durar.</h2>
+          <SplitText
+            tag="h2"
+            text="Feitos para o dia a dia. Pensados para durar."
+            className="section-title mt-4 text-balance"
+          />
           <div className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]">
             <p>
               Cada móvel é desenvolvido para unir aproveitamento inteligente de espaço, funcionalidade e bom
@@ -56,7 +61,11 @@ export function QualitySection() {
           className="section-space scroll-mt-24 bg-[var(--surface-warm)] lg:col-span-4 lg:pl-10 xl:pl-12"
         >
           <p className="eyebrow">Um olhar para o futuro</p>
-          <h2 className="quality-title mt-4 text-balance">Crescer também é produzir com mais responsabilidade.</h2>
+          <SplitText
+            tag="h2"
+            text="Crescer também é produzir com mais responsabilidade."
+            className="quality-title mt-4 text-balance"
+          />
           <div className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]">
             <p>
               Investimos em energia solar para tornar nossa operação mais eficiente e reduzir o impacto ambiental

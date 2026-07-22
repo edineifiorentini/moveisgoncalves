@@ -4,6 +4,7 @@ import { ChevronDown, MapPin, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { company } from "@/data/company";
 import { territories } from "@/data/representatives";
+import { AnimatedList } from "@/components/react-bits/animated-list";
 
 function companyWhatsappUrl(representative: string, region: string) {
   const message = encodeURIComponent(
@@ -48,7 +49,7 @@ export function RepresentativesAccordion() {
               aria-hidden={!isOpen}
             >
               <div className="overflow-hidden">
-                <div className="space-y-3 pb-5">
+                <AnimatedList className="space-y-3 pb-5">
                   {territory.representatives.map((representative) => (
                     <article
                       key={`${territory.id}-${representative.name}`}
@@ -76,7 +77,7 @@ export function RepresentativesAccordion() {
                       </a>
                     </article>
                   ))}
-                </div>
+                </AnimatedList>
               </div>
             </div>
           </section>

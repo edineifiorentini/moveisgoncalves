@@ -1,0 +1,22 @@
+.frame {
+  width: 100%;
+  perspective: 1100px;
+}
+
+.inner {
+  width: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .inner {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inner {
+    transform: none !important;
+  }
+}

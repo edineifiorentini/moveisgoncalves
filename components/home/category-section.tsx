@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { productCategories } from "@/data/site-content";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ProductSpotlight } from "@/components/home/product-spotlight";
+import { TiltedCard } from "@/components/react-bits/tilted-card";
 
 export function CategorySection() {
   return (
@@ -28,7 +29,9 @@ export function CategorySection() {
           </div>
 
           <div className="mt-10 max-w-[430px] md:mt-0 xl:mt-auto xl:w-full xl:max-w-none xl:pt-12">
-            <ProductSpotlight />
+            <TiltedCard rotateAmplitude={3.6} scaleOnHover={1.008}>
+              <ProductSpotlight />
+            </TiltedCard>
           </div>
         </div>
 

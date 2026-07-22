@@ -1,0 +1,58 @@
+.root {
+  --edge-proximity: 0;
+  --cursor-angle: 45deg;
+  --edge-sensitivity: 38;
+
+  position: relative;
+  display: inline-flex;
+  isolation: isolate;
+}
+
+.root::before,
+.edge {
+  position: absolute;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--cursor-angle),
+    transparent 0 37%,
+    var(--glow-one) 46%,
+    var(--glow-two) 51%,
+    var(--glow-three) 56%,
+    transparent 65% 100%
+  );
+  content: "";
+  opacity: calc((var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)));
+  pointer-events: none;
+  transition: opacity 180ms ease-out;
+}
+
+.root::before {
+  inset: -1px;
+  z-index: 0;
+}
+
+.edge {
+  inset: -7px;
+  z-index: -1;
+  filter: blur(9px);
+  opacity: calc(0.55 * (var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)));
+}
+
+.root:not(:hover)::before,
+.root:not(:hover) .edge {
+  opacity: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root::before,
+  .edge {
+    transition: none;
+  }
+}

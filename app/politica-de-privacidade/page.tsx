@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { absoluteUrl } from "@/lib/site";
+import { SplitText } from "@/components/react-bits/split-text";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade | Móveis Gonçalves",
@@ -13,7 +14,12 @@ export default function PrivacyPage() {
     <main id="main-content" className="pt-[var(--header-height)]">
       <article className="site-container max-w-4xl py-12 sm:py-16 md:py-24">
         <p className="eyebrow">Privacidade</p>
-        <h1 className="page-title mt-5 text-balance">Política de Privacidade</h1>
+        <SplitText
+          tag="h1"
+          text="Política de Privacidade"
+          className="page-title mt-5 text-balance"
+          threshold={0.02}
+        />
         <p className="mt-6 text-base leading-7 text-[var(--text-secondary)]">
           Esta página explica, de forma simples, como o site institucional da Móveis Gonçalves lida com informações
           durante a navegação.

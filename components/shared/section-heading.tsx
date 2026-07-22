@@ -16,7 +16,12 @@ export function SectionHeading({
   return (
     <div className={`${align === "center" ? "mx-auto text-center" : ""} ${className}`}>
       <p className="eyebrow">{eyebrow}</p>
-      <h2 className="section-title mt-4 text-balance">{title}</h2>
+      <SplitText
+        tag="h2"
+        text={title}
+        className={`section-title mt-4 text-balance ${align === "center" ? "mx-auto" : ""}`}
+        textAlign={align}
+      />
       {description ? (
         <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
           {description}
@@ -25,3 +30,4 @@ export function SectionHeading({
     </div>
   );
 }
+import { SplitText } from "@/components/react-bits/split-text";

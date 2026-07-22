@@ -4,13 +4,19 @@ import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { company } from "@/data/company";
 import { navigation, socialLinks } from "@/data/navigation";
 import { withBasePath } from "@/lib/site";
+import { GradualBlur } from "@/components/react-bits/gradual-blur";
 
 export function Footer() {
   const visibleSocialLinks = socialLinks.filter((link) => link.url);
 
   return (
-    <footer id="contato" className="bg-[var(--surface-dark)] text-white">
-      <div className="site-container grid gap-10 py-12 sm:py-14 md:grid-cols-12 md:py-20">
+    <footer id="contato" className="relative isolate overflow-hidden bg-[var(--surface-dark)] text-white">
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_22%_-20%,rgba(201,42,0,.38),transparent_38%),radial-gradient(circle_at_78%_-30%,rgba(138,106,80,.42),transparent_42%)] [mask-image:linear-gradient(to_bottom,black_0%,black_32%,transparent_100%)]"
+      />
+      <GradualBlur position="top" height="8rem" strength={2.4} divCount={7} curve="bezier" exponential opacity={0.92} />
+      <div className="site-container relative z-10 grid gap-10 py-12 sm:py-14 md:grid-cols-12 md:py-20">
         <div className="md:col-span-5 lg:col-span-4">
           <Image
             src={withBasePath("/images/logo/moveis-goncalves.png")}
@@ -77,7 +83,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/15">
+      <div className="relative z-10 border-t border-white/15">
         <div className="site-container flex flex-col gap-3 py-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>© Móveis Gonçalves. Todos os direitos reservados.</p>
           <Link href="/politica-de-privacidade" className="hover:text-white">

@@ -1,0 +1,60 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  isolation: isolate;
+  padding: var(--star-thickness);
+}
+
+.top,
+.bottom {
+  position: absolute;
+  z-index: 0;
+  width: 300%;
+  height: 180%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--star-color), transparent 11%);
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.top {
+  top: -85%;
+  left: -250%;
+  animation: star-top var(--star-speed) linear infinite alternate;
+}
+
+.bottom {
+  right: -250%;
+  bottom: -85%;
+  animation: star-bottom var(--star-speed) linear infinite alternate;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+}
+
+@keyframes star-top {
+  to {
+    opacity: 0.15;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes star-bottom {
+  to {
+    opacity: 0.15;
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .top,
+  .bottom {
+    animation: none;
+    opacity: 0.28;
+  }
+}
