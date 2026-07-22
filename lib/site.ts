@@ -11,7 +11,7 @@ export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL?.trim() || company.website
 ).replace(/\/+$/, "");
 
-const siteOrigin = new URL(siteUrl).origin;
+const siteBaseUrl = new URL(`${siteUrl}/`);
 
 export function withBasePath(path: string) {
   if (!basePath || !path.startsWith("/") || path.startsWith("//")) return path;
@@ -21,7 +21,7 @@ export function withBasePath(path: string) {
 
 export function absoluteUrl(path = "/") {
   if (/^https?:\/\//i.test(path)) return path;
-  const url = new URL(withBasePath(path), `${siteOrigin}/`);
+  const url = new URL(path.replace(/^\/+/, ""), siteBaseUrl);
   const finalSegment = url.pathname.split("/").at(-1) ?? "";
   if (!url.pathname.endsWith("/") && !finalSegment.includes(".")) url.pathname += "/";
   return url.toString();
