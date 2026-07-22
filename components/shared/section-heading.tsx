@@ -6,6 +6,9 @@ type SectionHeadingProps = {
   className?: string;
 };
 
+import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
+import { SplitText } from "@/components/react-bits/split-text";
+
 export function SectionHeading({
   eyebrow,
   title,
@@ -23,11 +26,10 @@ export function SectionHeading({
         textAlign={align}
       />
       {description ? (
-        <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">
-          {description}
-        </p>
+        <DelayedReveal className="mt-5" delay={1.12}>
+          <p className="max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">{description}</p>
+        </DelayedReveal>
       ) : null}
     </div>
   );
 }
-import { SplitText } from "@/components/react-bits/split-text";

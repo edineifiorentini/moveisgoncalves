@@ -7,6 +7,7 @@ import { ProductCard } from "@/components/products/product-card";
 import { ButtonLink } from "@/components/shared/button-link";
 import { categoryLabels, productBySlug, products } from "@/data/products";
 import { absoluteUrl } from "@/lib/site";
+import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
 
 type ProductDetailPageProps = {
@@ -102,11 +103,13 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               className="page-title mt-4 text-balance"
               threshold={0.02}
             />
-            <p className="mt-3 text-lg font-medium text-[var(--text-secondary)]">{product.type}</p>
-            <p className="mt-6 text-base leading-7 text-[var(--text-secondary)]">
-              {product.description ??
-                "Uma solução modular desenvolvida para aproveitar melhor o espaço, facilitar a organização e integrar-se a diferentes estilos de ambiente."}
-            </p>
+            <DelayedReveal className="mt-3" delay={1.05}>
+              <p className="text-lg font-medium text-[var(--text-secondary)]">{product.type}</p>
+              <p className="mt-6 text-base leading-7 text-[var(--text-secondary)]">
+                {product.description ??
+                  "Uma solução modular desenvolvida para aproveitar melhor o espaço, facilitar a organização e integrar-se a diferentes estilos de ambiente."}
+              </p>
+            </DelayedReveal>
 
             <div className="mt-9 border-t border-[var(--border)] pt-7">
               <h2 className="text-lg font-semibold tracking-[-0.02em]">Medidas disponíveis</h2>

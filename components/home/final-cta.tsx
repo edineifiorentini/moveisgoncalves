@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/shared/button-link";
+import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
 import { withBasePath } from "@/lib/site";
 
@@ -25,10 +26,12 @@ export function FinalCta() {
               text="Qualidade e funcionalidade para transformar a sua casa."
               className="section-title mt-4 text-balance"
             />
-            <p className="mt-6 text-base leading-7 text-[var(--text-secondary)] md:text-lg">
-              Conheça nossa linha de móveis modulares e encontre soluções que combinam com o seu espaço, sua rotina
-              e o seu jeito de viver.
-            </p>
+            <DelayedReveal className="mt-6" delay={1.18}>
+              <p className="text-base leading-7 text-[var(--text-secondary)] md:text-lg">
+                Conheça nossa linha de móveis modulares e encontre soluções que combinam com o seu espaço, sua rotina
+                e o seu jeito de viver.
+              </p>
+            </DelayedReveal>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/produtos">Conhecer os produtos</ButtonLink>
               <ButtonLink href="/#representantes" variant="secondary">

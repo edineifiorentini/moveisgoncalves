@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
 
 export default function NotFound() {
@@ -7,7 +8,9 @@ export default function NotFound() {
       <div>
         <p className="eyebrow">Página não encontrada</p>
         <SplitText tag="h1" text="Este caminho não existe." className="page-title mt-4" textAlign="center" />
-        <p className="mt-5 text-[var(--text-secondary)]">Volte à página inicial ou explore nosso catálogo de produtos.</p>
+        <DelayedReveal className="mt-5" delay={1.02}>
+          <p className="text-[var(--text-secondary)]">Volte à página inicial ou explore nosso catálogo de produtos.</p>
+        </DelayedReveal>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link className="inline-flex min-h-11 items-center bg-[var(--brand-red)] px-5 font-semibold text-white" href="/">
             Página inicial

@@ -3,6 +3,7 @@ import { BadgeCheck, Gauge, PanelsTopLeft } from "lucide-react";
 import { qualityBenefits } from "@/data/site-content";
 import { ButtonLink } from "@/components/shared/button-link";
 import { ProductParallaxStack } from "@/components/home/product-parallax-stack";
+import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
 
 const benefitIcons: Record<string, LucideIcon> = {
@@ -22,7 +23,7 @@ export function QualitySection() {
             text="Feitos para o dia a dia. Pensados para durar."
             className="section-title mt-4 text-balance"
           />
-          <div className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]">
+          <DelayedReveal className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]" delay={1.22}>
             <p>
               Cada móvel é desenvolvido para unir aproveitamento inteligente de espaço, funcionalidade e bom
               acabamento. O sistema modular permite criar diferentes composições e encontrar soluções adequadas
@@ -32,7 +33,7 @@ export function QualitySection() {
               Com processos modernos e cuidado em cada etapa, buscamos entregar produtos confiáveis, versáteis e
               com um preço justo.
             </p>
-          </div>
+          </DelayedReveal>
 
           <div className="mt-10 space-y-7">
             {qualityBenefits.map((benefit) => {
@@ -66,7 +67,7 @@ export function QualitySection() {
             text="Crescer também é produzir com mais responsabilidade."
             className="quality-title mt-4 text-balance"
           />
-          <div className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]">
+          <DelayedReveal className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]" delay={1.22}>
             <p>
               Investimos em energia solar para tornar nossa operação mais eficiente e reduzir o impacto ambiental
               da produção.
@@ -75,7 +76,7 @@ export function QualitySection() {
               Essa escolha representa a maneira como enxergamos o futuro: continuar evoluindo, utilizando melhor os
               recursos e buscando processos cada vez mais responsáveis.
             </p>
-          </div>
+          </DelayedReveal>
           <ButtonLink href="/#historia" className="mt-8">
             Conheça nossa história
           </ButtonLink>

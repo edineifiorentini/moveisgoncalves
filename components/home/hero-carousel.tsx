@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { heroSlides } from "@/data/site-content";
 import { ButtonLink } from "@/components/shared/button-link";
+import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
 
 export function HeroCarousel() {
@@ -88,10 +89,12 @@ export function HeroCarousel() {
             duration={0.9}
             threshold={0.02}
           />
-          <p className="mt-6 max-w-[54ch] text-base leading-7 text-white/82 md:text-lg md:leading-8">
-            Móveis modulares para cozinhas, áreas de serviço, quartos e salas, desenvolvidos para trazer mais
-            praticidade, organização e beleza para o dia a dia.
-          </p>
+          <DelayedReveal className="mt-6" delay={1.3}>
+            <p className="max-w-[54ch] text-base leading-7 text-white/82 md:text-lg md:leading-8">
+              Móveis modulares para cozinhas, áreas de serviço, quartos e salas, desenvolvidos para trazer mais
+              praticidade, organização e beleza para o dia a dia.
+            </p>
+          </DelayedReveal>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="/produtos">Conheça nossos produtos</ButtonLink>
             <ButtonLink href="/#representantes" variant="light">

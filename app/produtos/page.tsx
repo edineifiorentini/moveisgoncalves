@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { ProductCatalog } from "@/components/products/product-catalog";
 import { products } from "@/data/products";
 import { absoluteUrl, withBasePath } from "@/lib/site";
+import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
 
 export const metadata: Metadata = {
@@ -26,10 +27,12 @@ export default function ProductsPage() {
               className="page-title mt-5 max-w-[13ch] text-balance"
               threshold={0.02}
             />
-            <p className="mt-6 max-w-[60ch] text-base leading-7 text-[var(--text-secondary)] md:text-lg md:leading-8">
-              Explore nossa linha de móveis modulares e filtre por ambiente, tipo, medidas ou acabamento para
-              encontrar a solução ideal para sua casa.
-            </p>
+            <DelayedReveal className="mt-6" delay={1.24}>
+              <p className="max-w-[60ch] text-base leading-7 text-[var(--text-secondary)] md:text-lg md:leading-8">
+                Explore nossa linha de móveis modulares e filtre por ambiente, tipo, medidas ou acabamento para
+                encontrar a solução ideal para sua casa.
+              </p>
+            </DelayedReveal>
           </div>
           <div className="relative min-h-[240px] overflow-hidden sm:min-h-[300px] lg:col-span-5 lg:min-h-[430px]">
             <div className="absolute inset-y-0 left-[18%] w-px bg-[var(--brand-red)]/35" />

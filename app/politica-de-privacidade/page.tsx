@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { absoluteUrl } from "@/lib/site";
+import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
 
 export const metadata: Metadata = {
@@ -20,10 +21,12 @@ export default function PrivacyPage() {
           className="page-title mt-5 text-balance"
           threshold={0.02}
         />
-        <p className="mt-6 text-base leading-7 text-[var(--text-secondary)]">
-          Esta página explica, de forma simples, como o site institucional da Móveis Gonçalves lida com informações
-          durante a navegação.
-        </p>
+        <DelayedReveal className="mt-6" delay={1.02}>
+          <p className="text-base leading-7 text-[var(--text-secondary)]">
+            Esta página explica, de forma simples, como o site institucional da Móveis Gonçalves lida com informações
+            durante a navegação.
+          </p>
+        </DelayedReveal>
 
         <div className="prose-content mt-10 space-y-9 sm:mt-12 sm:space-y-10">
           <section>

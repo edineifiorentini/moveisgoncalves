@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import { CalendarDays, Factory, ScanLine, SunMedium } from "lucide-react";
 import { historyStats } from "@/data/site-content";
+import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SectionHeading } from "@/components/shared/section-heading";
 
 const statIcons: Record<string, LucideIcon> = {
@@ -20,7 +21,7 @@ export function HistorySection() {
             title="Uma história construída com trabalho, evolução e confiança."
             className="lg:col-span-4"
           />
-          <div className="space-y-5 text-base leading-7 text-[var(--text-secondary)] lg:col-span-4">
+          <DelayedReveal className="space-y-5 text-base leading-7 text-[var(--text-secondary)] lg:col-span-4">
             <p>
               Em 1990, a Móveis Gonçalves iniciou sua trajetória em Tapira, no Paraná, em uma estrutura de apenas
               80 m² e com produção artesanal. O que começou pequeno cresceu com dedicação, investimento e
@@ -30,14 +31,17 @@ export function HistorySection() {
               Hoje, contamos com uma fábrica de aproximadamente 2.000 m², equipada com máquinas modernas que
               proporcionam mais precisão, eficiência e qualidade em cada etapa da produção.
             </p>
-          </div>
-          <div className="space-y-5 text-base leading-7 text-[var(--text-secondary)] lg:col-span-4">
+          </DelayedReveal>
+          <DelayedReveal
+            className="space-y-5 text-base leading-7 text-[var(--text-secondary)] lg:col-span-4"
+            delay={1.24}
+          >
             <p>
               Mesmo com toda essa evolução, mantemos o princípio que orienta nosso trabalho desde o início:
               oferecer móveis funcionais, bem construídos e acessíveis, capazes de valorizar o lar e facilitar a
               rotina.
             </p>
-          </div>
+          </DelayedReveal>
         </div>
 
         <div className="mt-10 grid border-y border-[var(--border)] sm:mt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
