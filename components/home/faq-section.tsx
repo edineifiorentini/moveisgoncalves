@@ -8,6 +8,7 @@ export function FaqSection() {
       <div className="site-container grid gap-10 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-4">
           <SectionHeading
+            id="faq-title"
             eyebrow="Informações essenciais"
             title="Perguntas frequentes sobre a Móveis Gonçalves."
             description="Respostas diretas sobre a fábrica, os produtos e o atendimento."
@@ -35,4 +36,3 @@ export function FaqSection() {
     </section>
   );
 }
-

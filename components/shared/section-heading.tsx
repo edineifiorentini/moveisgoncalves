@@ -1,4 +1,5 @@
 type SectionHeadingProps = {
+  id?: string;
   eyebrow: string;
   title: string;
   description?: string;
@@ -10,6 +11,7 @@ import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
 
 export function SectionHeading({
+  id,
   eyebrow,
   title,
   description,
@@ -20,6 +22,7 @@ export function SectionHeading({
     <div className={`${align === "center" ? "mx-auto text-center" : ""} ${className}`}>
       <p className="eyebrow">{eyebrow}</p>
       <SplitText
+        id={id}
         tag="h2"
         text={title}
         className={`section-title mt-4 text-balance ${align === "center" ? "mx-auto" : ""}`}

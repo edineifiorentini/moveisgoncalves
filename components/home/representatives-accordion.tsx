@@ -46,7 +46,8 @@ export function RepresentativesAccordion() {
             <div
               id={panelId}
               className={`accordion-grid ${isOpen ? "is-open" : ""}`}
-              aria-hidden={!isOpen}
+              aria-hidden={isOpen ? undefined : true}
+              inert={!isOpen}
             >
               <div className="overflow-hidden">
                 <AnimatedList className="space-y-3 pb-5">

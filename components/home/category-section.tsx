@@ -12,13 +12,12 @@ export function CategorySection() {
       <div className="site-container grid gap-12 xl:grid-cols-12 xl:gap-10">
         <div className="md:grid md:grid-cols-[minmax(0,1fr)_minmax(280px,0.85fr)] md:items-end md:gap-8 xl:col-span-4 xl:flex xl:h-full xl:items-stretch xl:flex-col">
           <div>
-            <div id="categorias-title">
-              <SectionHeading
-                eyebrow="Nossos produtos"
-                title="Móveis para cada espaço da sua casa."
-                description="Explore soluções pensadas para diferentes ambientes e descubra novas possibilidades para compor o seu lar."
-              />
-            </div>
+            <SectionHeading
+              id="categorias-title"
+              eyebrow="Nossos produtos"
+              title="Móveis para cada espaço da sua casa."
+              description="Explore soluções pensadas para diferentes ambientes e descubra novas possibilidades para compor o seu lar."
+            />
             <Link
               href="/produtos"
               prefetch={false}
