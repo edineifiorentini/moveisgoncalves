@@ -4,6 +4,23 @@
   overflow: hidden;
   isolation: isolate;
   padding: var(--star-thickness);
+  box-shadow: 0 0 0 0 rgb(201 42 0 / 0);
+  transition:
+    box-shadow 320ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.root:hover,
+.root:focus-within {
+  box-shadow:
+    0 14px 30px -14px rgb(115 26 6 / 0.62),
+    0 0 0 1px rgb(255 199 175 / 0.32);
+  transform: translateY(-2px);
+}
+
+.root:has(:focus-visible) {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 3px;
 }
 
 .top,
@@ -35,6 +52,23 @@
   z-index: 1;
   display: flex;
   width: 100%;
+  overflow: hidden;
+}
+
+.inner::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(108deg, transparent 24%, rgb(255 255 255 / 0.34) 48%, transparent 70%);
+  content: "";
+  pointer-events: none;
+  transform: translateX(-145%);
+  transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.root:hover .inner::after,
+.root:focus-within .inner::after {
+  transform: translateX(145%);
 }
 
 @keyframes star-top {
@@ -52,6 +86,20 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .root,
+  .inner::after {
+    transition: none;
+  }
+
+  .root:hover,
+  .root:focus-within {
+    transform: none;
+  }
+
+  .inner::after {
+    display: none;
+  }
+
   .top,
   .bottom {
     animation: none;

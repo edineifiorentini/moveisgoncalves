@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { GradualBlur } from "@/components/react-bits/gradual-blur";
 import { company } from "@/data/company";
 import { absoluteUrl, siteRootUrl } from "@/lib/site";
 import "./globals.css";
@@ -73,6 +74,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Header />
         {children}
         <Footer />
+        <GradualBlur
+          fixed
+          position="bottom"
+          height="clamp(5.5rem, 11vw, 8.5rem)"
+          strength={3.2}
+          divCount={8}
+          curve="bezier"
+          exponential
+          opacity={0.94}
+          tint="rgba(248, 245, 241, 0.2)"
+          zIndex={40}
+        />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       </body>
     </html>

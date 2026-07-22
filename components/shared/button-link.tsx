@@ -35,7 +35,7 @@ export function ButtonLink({
 
   if (variant === "primary") {
     return (
-      <StarBorder className={className} color="#ffb092" speed="6.8s" thickness={1}>
+      <StarBorder className={className} color="#ffd4c2" speed="5.8s" thickness={2}>
         {link}
       </StarBorder>
     );
