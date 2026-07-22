@@ -1,41 +1,51 @@
 "use client";
 
-import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { heroSlides } from "@/data/site-content";
 import { ButtonLink } from "@/components/shared/button-link";
 import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
+import { ResponsiveImage } from "@/components/shared/responsive-image";
 
 export function HeroCarousel() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [engaged, setEngaged] = useState(false);
   const [mountedSlides, setMountedSlides] = useState(() => new Set([0]));
   const touchStart = useRef<number | null>(null);
+
+  const engageCarousel = useCallback(() => {
+    setEngaged(true);
+    setMountedSlides(new Set(heroSlides.map((_, index) => index)));
+  }, []);
 
   const showSlide = useCallback((index: number) => {
     const next = (index + heroSlides.length) % heroSlides.length;
     setMountedSlides((current) => new Set(current).add(next));
     setActive(next);
-  }, []);
+    engageCarousel();
+  }, [engageCarousel]);
+
+  useEffect(() => {
+    if (engaged) return;
+    const events = ["pointerdown", "keydown", "wheel", "touchstart"] as const;
+    events.forEach((eventName) => window.addEventListener(eventName, engageCarousel, { once: true, passive: true }));
+    return () => events.forEach((eventName) => window.removeEventListener(eventName, engageCarousel));
+  }, [engaged, engageCarousel]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mountRemaining = () => setMountedSlides(new Set(heroSlides.map((_, index) => index)));
-    const idleId = window.setTimeout(mountRemaining, 1200);
-
-    if (paused || mediaQuery.matches) return () => window.clearTimeout(idleId);
+    if (!engaged || paused || mediaQuery.matches) return;
 
     const intervalId = window.setInterval(() => {
       setActive((current) => (current + 1) % heroSlides.length);
     }, 7000);
 
     return () => {
-      window.clearTimeout(idleId);
       window.clearInterval(intervalId);
     };
-  }, [paused]);
+  }, [engaged, paused]);
 
   return (
     <section
@@ -61,11 +71,10 @@ export function HeroCarousel() {
       <div className="absolute inset-0 top-[var(--header-height)]">
         {heroSlides.map((slide, index) =>
           mountedSlides.has(index) ? (
-            <Image
+            <ResponsiveImage
               key={slide.src}
               src={slide.src}
               alt={index === active ? slide.alt : ""}
-              fill
               sizes="100vw"
               priority={index === 0}
               className={`object-cover transition-opacity duration-[900ms] motion-reduce:transition-none ${
@@ -89,7 +98,7 @@ export function HeroCarousel() {
             duration={0.9}
             threshold={0.02}
           />
-          <DelayedReveal className="mt-6" delay={0.72}>
+          <DelayedReveal className="mt-6" delay={0.3}>
             <p className="max-w-[54ch] text-base leading-7 text-white/82 md:text-lg md:leading-8">
               Móveis modulares para cozinhas, áreas de serviço, quartos e salas, desenvolvidos para trazer mais
               praticidade, organização e beleza para o dia a dia.

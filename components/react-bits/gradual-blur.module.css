@@ -21,3 +21,13 @@
     -webkit-backdrop-filter: none !important;
   }
 }
+
+@media (max-width: 640px) {
+  .root {
+    height: 5rem !important;
+  }
+
+  .layer:nth-child(n + 4) {
+    display: none;
+  }
+}

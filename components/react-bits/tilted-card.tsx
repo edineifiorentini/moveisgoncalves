@@ -1,7 +1,7 @@
 "use client";
 
 import type { PointerEvent, ReactNode } from "react";
-import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
+import { useEffect, useRef } from "react";
 import styles from "./tilted-card.module.css";
 
 type TiltedCardProps = {
@@ -11,46 +11,43 @@ type TiltedCardProps = {
   scaleOnHover?: number;
 };
 
-const spring = { damping: 28, stiffness: 170, mass: 0.8 };
-
 export function TiltedCard({
   children,
   className = "",
   rotateAmplitude = 4,
   scaleOnHover = 1.012,
 }: TiltedCardProps) {
-  const reducedMotion = useReducedMotion();
-  const rotateX = useSpring(useMotionValue(0), spring);
-  const rotateY = useSpring(useMotionValue(0), spring);
-  const scale = useSpring(1, spring);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<number | null>(null);
+
+  useEffect(
+    () => () => {
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    },
+    [],
+  );
 
   const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (reducedMotion || event.pointerType !== "mouse") return;
+    if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
-    rotateX.set(y * rotateAmplitude * -2);
-    rotateY.set(x * rotateAmplitude * 2);
+    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    frameRef.current = requestAnimationFrame(() => {
+      if (!innerRef.current) return;
+      innerRef.current.style.transform = `rotateX(${y * rotateAmplitude * -2}deg) rotateY(${x * rotateAmplitude * 2}deg) scale(${scaleOnHover})`;
+    });
   };
 
   const reset = () => {
-    rotateX.set(0);
-    rotateY.set(0);
-    scale.set(1);
+    if (innerRef.current) innerRef.current.style.transform = "rotateX(0) rotateY(0) scale(1)";
   };
 
   return (
-    <div
-      className={`${styles.frame} ${className}`}
-      onPointerMove={handlePointerMove}
-      onPointerEnter={(event) => {
-        if (!reducedMotion && event.pointerType === "mouse") scale.set(scaleOnHover);
-      }}
-      onPointerLeave={reset}
-    >
-      <motion.div className={styles.inner} style={{ rotateX, rotateY, scale }}>
+    <div className={`${styles.frame} ${className}`} onPointerMove={handlePointerMove} onPointerLeave={reset}>
+      <div ref={innerRef} className={styles.inner}>
         {children}
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -6,8 +6,8 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
-    { url: absoluteUrl("/"), changeFrequency: "monthly", priority: 1 },
-    { url: absoluteUrl("/produtos"), changeFrequency: "monthly", priority: 0.9 },
+    { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
+    { url: absoluteUrl("/produtos"), changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/politica-de-privacidade"), changeFrequency: "yearly", priority: 0.2 },
   ];
   const productPages: MetadataRoute.Sitemap = products.map((product) => ({

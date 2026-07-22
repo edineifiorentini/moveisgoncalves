@@ -34,7 +34,7 @@ export function HistorySection() {
           </DelayedReveal>
           <DelayedReveal
             className="space-y-5 text-base leading-7 text-[var(--text-secondary)] lg:col-span-4"
-            delay={0.68}
+            delay={0.26}
           >
             <p>
               Mesmo com toda essa evolução, mantemos o princípio que orienta nosso trabalho desde o início:

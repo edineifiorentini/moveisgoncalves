@@ -261,7 +261,7 @@ function FilterSelect({ label, value, onChange, children, className = "" }: Filt
   const id = `filter-${label.toLowerCase().replaceAll(" ", "-")}`;
   return (
     <div className={className}>
-      <label htmlFor={id} className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--text-muted)]">
+      <label htmlFor={id} className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--text-secondary)]">
         {label}
       </label>
       <select

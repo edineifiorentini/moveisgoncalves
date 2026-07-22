@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Pause, Play } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { withBasePath } from "@/lib/site";
+import { ResponsiveImage } from "@/components/shared/responsive-image";
 
 const spotlightProducts = [
   {
@@ -41,20 +41,39 @@ const spotlightProducts = [
 
 export function ProductSpotlight() {
   const [active, setActive] = useState(0);
+  const [previous, setPrevious] = useState<number | null>(null);
   const [manualPaused, setManualPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const activeRef = useRef(0);
+  const cleanupRef = useRef<number | null>(null);
   const paused = manualPaused || hovered;
+
+  const selectProduct = useCallback((next: number) => {
+    if (next === activeRef.current) return;
+    setPrevious(activeRef.current);
+    activeRef.current = next;
+    setActive(next);
+    if (cleanupRef.current !== null) window.clearTimeout(cleanupRef.current);
+    cleanupRef.current = window.setTimeout(() => setPrevious(null), 820);
+  }, []);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (paused || reducedMotion.matches) return;
 
     const intervalId = window.setInterval(() => {
-      setActive((current) => (current + 1) % spotlightProducts.length);
+      selectProduct((activeRef.current + 1) % spotlightProducts.length);
     }, 5000);
 
     return () => window.clearInterval(intervalId);
-  }, [paused]);
+  }, [paused, selectProduct]);
+
+  useEffect(
+    () => () => {
+      if (cleanupRef.current !== null) window.clearTimeout(cleanupRef.current);
+    },
+    [],
+  );
 
   const activeProduct = spotlightProducts[active];
 
@@ -68,19 +87,21 @@ export function ProductSpotlight() {
     >
       <Link
         href={`/produtos/${activeProduct.slug}`}
+        prefetch={false}
         className="product-spotlight-link focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)]"
         aria-label={`Conhecer ${activeProduct.type} ${activeProduct.name}`}
       >
-        {spotlightProducts.map((product, index) => (
-          <Image
-            key={product.slug}
-            src={product.image}
-            alt={index === active ? `${product.type} ${product.name}` : ""}
-            fill
-            sizes="(min-width: 1024px) 390px, (min-width: 640px) 55vw, 100vw"
-            className={`product-spotlight-image object-contain ${index === active ? "is-active" : ""}`}
-          />
-        ))}
+        {spotlightProducts.map((product, index) =>
+          index === active || index === previous ? (
+            <ResponsiveImage
+              key={product.slug}
+              src={product.image}
+              alt={index === active ? `${product.type} ${product.name}` : ""}
+              sizes="(min-width: 1024px) 390px, (min-width: 640px) 55vw, 100vw"
+              className={`product-spotlight-image object-contain ${index === active ? "is-active" : ""}`}
+            />
+          ) : null,
+        )}
       </Link>
 
       <div className="product-spotlight-meta">
@@ -109,7 +130,7 @@ export function ProductSpotlight() {
             type="button"
             aria-label={`Mostrar ${product.name}`}
             aria-current={index === active ? "true" : undefined}
-            onClick={() => setActive(index)}
+            onClick={() => selectProduct(index)}
             className={index === active ? "is-active" : ""}
           />
         ))}

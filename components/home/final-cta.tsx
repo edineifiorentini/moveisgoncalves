@@ -1,18 +1,17 @@
-import Image from "next/image";
 import { ButtonLink } from "@/components/shared/button-link";
 import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
 import { withBasePath } from "@/lib/site";
+import { ResponsiveImage } from "@/components/shared/responsive-image";
 
 export function FinalCta() {
   return (
     <section className="bg-[var(--surface-warm)]" aria-labelledby="final-cta-title">
       <div className="grid lg:grid-cols-2">
         <div className="relative min-h-[280px] overflow-hidden sm:min-h-[360px] lg:min-h-[520px]">
-          <Image
+          <ResponsiveImage
             src={withBasePath("/images/products/comoda-italia-ambiente.webp")}
             alt="Cômoda Itália em um quarto claro"
-            fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"
           />
@@ -26,7 +25,7 @@ export function FinalCta() {
               text="Qualidade e funcionalidade para transformar a sua casa."
               className="section-title mt-4 text-balance"
             />
-            <DelayedReveal className="mt-6" delay={0.62}>
+            <DelayedReveal className="mt-6" delay={0.24}>
               <p className="text-base leading-7 text-[var(--text-secondary)] md:text-lg">
                 Conheça nossa linha de móveis modulares e encontre soluções que combinam com o seu espaço, sua rotina
                 e o seu jeito de viver.

@@ -33,6 +33,10 @@ test("server-renders the branded homepage", async () => {
   assert.match(html, /href="\/produtos"/);
   assert.match(html, /id="representantes"/);
   assert.match(html, /Ir para o conteúdo principal/);
+  assert.match(html, /rel="canonical" href="https:\/\/moveisgoncalves\.com\.br\/"/);
+  assert.match(html, /FAQPage/);
+  assert.match(html, /O que a Móveis Gonçalves fabrica/);
+  assert.match(html, /href="\/llms\.txt"/);
   assert.doesNotMatch(html, /Your site is taking shape|Building your site/);
 });
 
@@ -47,4 +51,6 @@ test("server-renders a product detail with catalog facts", async () => {
   assert.match(normalizedHtml, /2,07 m/);
   assert.match(normalizedHtml, /página 2 do catálogo fornecido/);
   assert.match(normalizedHtml, /application\/ld\+json/);
+  assert.match(normalizedHtml, /BreadcrumbList/);
+  assert.match(normalizedHtml, /"@type":"Product"/);
 });

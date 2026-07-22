@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { withBasePath } from "@/lib/site";
+import { ResponsiveImage } from "@/components/shared/responsive-image";
 
 const environments = [
   {
@@ -67,10 +67,9 @@ export function ProductParallaxStack() {
           data-depth={environment.depth}
           className={`product-parallax-card product-parallax-card-${index + 1}`}
         >
-          <Image
+          <ResponsiveImage
             src={environment.src}
             alt={environment.alt}
-            fill
             sizes="(min-width: 1024px) 30vw, 88vw"
             className="object-cover"
           />

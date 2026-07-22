@@ -1,10 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { productCategories } from "@/data/site-content";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ProductSpotlight } from "@/components/home/product-spotlight";
 import { TiltedCard } from "@/components/react-bits/tilted-card";
+import { ResponsiveImage } from "@/components/shared/responsive-image";
 
 export function CategorySection() {
   return (
@@ -21,6 +21,7 @@ export function CategorySection() {
             </div>
             <Link
               href="/produtos"
+              prefetch={false}
               className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)]"
             >
               Explorar todos os produtos
@@ -40,6 +41,7 @@ export function CategorySection() {
             <Link
               key={category.title}
               href={`/produtos?categoria=${category.category}`}
+              prefetch={false}
               className="category-card group border border-[var(--border)] bg-[var(--surface)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)]"
             >
               <div
@@ -47,10 +49,9 @@ export function CategorySection() {
                   category.category === "sala" ? "bg-[var(--surface-warm)]" : "bg-[#d8d1c8]"
                 }`}
               >
-                <Image
+                <ResponsiveImage
                   src={category.image}
                   alt={category.alt}
-                  fill
                   sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
                   className={`transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.025] ${
                     category.category === "sala" ? "object-contain p-8" : "object-cover"

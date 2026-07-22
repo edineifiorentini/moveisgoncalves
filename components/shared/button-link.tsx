@@ -26,6 +26,7 @@ export function ButtonLink({
   const link = (
     <Link
       href={href}
+      prefetch={false}
       className={`group inline-flex min-h-11 w-full items-center justify-center gap-2 border px-4 py-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)] sm:px-5 ${variants[variant]}`}
     >
       {children}

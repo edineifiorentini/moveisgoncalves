@@ -13,7 +13,7 @@ export function Footer() {
       <div className="site-container grid gap-10 py-12 sm:py-14 md:grid-cols-12 md:py-20">
         <div className="md:col-span-5 lg:col-span-4">
           <Image
-            src={withBasePath("/images/logo/moveis-goncalves.png")}
+            src={withBasePath("/images/logo/moveis-goncalves.webp")}
             alt="Móveis Gonçalves"
             width={350}
             height={100}
@@ -29,7 +29,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-white/75">
             {navigation.slice(0, 5).map((item) => (
               <li key={item.href}>
-                <Link className="hover:text-white focus-visible:outline-2 focus-visible:outline-offset-3" href={item.href}>
+                <Link prefetch={false} className="hover:text-white focus-visible:outline-2 focus-visible:outline-offset-3" href={item.href}>
                   {item.label}
                 </Link>
               </li>
@@ -80,7 +80,7 @@ export function Footer() {
       <div className="border-t border-white/15">
         <div className="site-container flex flex-col gap-3 py-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>© Móveis Gonçalves. Todos os direitos reservados.</p>
-          <Link href="/politica-de-privacidade" className="hover:text-white">
+          <Link href="/politica-de-privacidade" prefetch={false} className="hover:text-white">
             Política de Privacidade
           </Link>
         </div>

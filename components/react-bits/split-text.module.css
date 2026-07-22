@@ -4,15 +4,14 @@
   max-width: 100%;
 }
 
-.title :global(.split-word),
-.title :global(.split-char) {
+.unit {
   display: inline-block;
+  transform-origin: 50% 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .title,
-  .title :global(.split-word),
-  .title :global(.split-char) {
+  .unit {
     opacity: 1 !important;
     transform: none !important;
   }

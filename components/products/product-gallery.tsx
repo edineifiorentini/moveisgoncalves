@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { Search } from "lucide-react";
 import { useRef, useState } from "react";
 import type { Product } from "@/data/products";
+import { ResponsiveImage } from "@/components/shared/responsive-image";
 
 type ProductGalleryProps = {
   product: Product;
@@ -45,11 +45,10 @@ export function ProductGallery({ product }: ProductGalleryProps) {
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
       >
-        <Image
+        <ResponsiveImage
           key={selected.src}
           src={selected.src}
           alt={`${selected.label} — ${product.type} ${product.name}`}
-          fill
           priority
           sizes="(min-width: 1024px) 58vw, 100vw"
           className={`product-gallery-main ${selected.src.includes("isolado") ? "object-contain p-5 sm:p-8" : "object-cover"}`}
@@ -73,10 +72,9 @@ export function ProductGallery({ product }: ProductGalleryProps) {
                 active === index ? "border-[var(--brand-red)]" : "border-[var(--border)]"
               }`}
             >
-              <Image
+              <ResponsiveImage
                 src={image.src}
                 alt=""
-                fill
                 sizes="160px"
                 className={image.src.includes("isolado") ? "object-contain p-2" : "object-cover"}
               />

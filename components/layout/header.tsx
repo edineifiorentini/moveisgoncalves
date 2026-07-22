@@ -79,11 +79,12 @@ export function Header() {
       <div className="site-container relative z-10 flex h-[var(--header-height)] items-center justify-between gap-4 sm:gap-6">
         <Link
           href="/"
+          prefetch={false}
           aria-label="Móveis Gonçalves — página inicial"
           className="relative z-10 shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)]"
         >
           <Image
-            src={withBasePath("/images/logo/moveis-goncalves.png")}
+            src={withBasePath("/images/logo/moveis-goncalves.webp")}
             alt="Móveis Gonçalves"
             width={350}
             height={100}
@@ -94,7 +95,7 @@ export function Header() {
 
         <nav aria-label="Navegação principal" className="hidden items-center gap-6 xl:flex">
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href} className="nav-link">
+            <Link key={item.href} href={item.href} prefetch={false} className="nav-link">
               {item.label}
             </Link>
           ))}
@@ -102,6 +103,7 @@ export function Header() {
 
         <Link
           href="/produtos"
+          prefetch={false}
           className="hidden min-h-11 items-center bg-[var(--brand-red)] px-5 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)] xl:inline-flex"
         >
           Ver produtos
@@ -136,6 +138,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  prefetch={false}
                   onClick={() => setOpen(false)}
                   className="border-b border-[var(--border)] py-3.5 text-xl font-medium tracking-[-0.03em] text-[var(--text-primary)] transition-colors hover:text-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-red)] sm:py-4 sm:text-2xl"
                 >
@@ -146,6 +149,7 @@ export function Header() {
             <div className="mt-auto pt-7">
               <Link
                 href="/produtos"
+                prefetch={false}
                 onClick={() => setOpen(false)}
                 className="inline-flex min-h-12 w-full items-center justify-center bg-[var(--brand-red)] px-6 font-semibold text-white transition-colors hover:bg-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brand-red)]"
               >

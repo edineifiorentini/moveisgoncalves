@@ -1,44 +1,42 @@
 "use client";
 
-import { Children, type ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { Children, type CSSProperties, type ReactNode, useEffect, useRef } from "react";
+import styles from "./animated-list.module.css";
 
 type AnimatedListProps = {
   children: ReactNode;
   className?: string;
 };
 
+type ItemStyle = CSSProperties & { "--list-delay": string };
+
 export function AnimatedList({ children, className = "" }: AnimatedListProps) {
-  const reducedMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
   const items = Children.toArray(children);
 
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    element.dataset.enhanced = "true";
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        element.dataset.visible = "true";
+        observer.disconnect();
+      },
+      { threshold: 0.08 },
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.12 }}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.09 } },
-      }}
-    >
+    <div ref={ref} className={`${styles.root} ${className}`}>
       {items.map((item, index) => (
-        <motion.div
-          key={index}
-          variants={{
-            hidden: reducedMotion ? { opacity: 1 } : { opacity: 0, y: 18, scale: 0.985 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              transition: { duration: reducedMotion ? 0 : 0.42, ease: [0.22, 1, 0.36, 1] },
-            },
-          }}
-        >
+        <div key={index} className={styles.item} style={{ "--list-delay": `${index * 70}ms` } as ItemStyle}>
           {item}
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   );
 }

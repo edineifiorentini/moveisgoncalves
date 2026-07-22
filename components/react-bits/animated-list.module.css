@@ -1,0 +1,25 @@
+.item {
+  transition:
+    opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--list-delay);
+}
+
+.root[data-enhanced="true"] .item {
+  opacity: 0;
+  transform: translateY(16px) scale(0.988);
+}
+
+.root[data-visible="true"] .item {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

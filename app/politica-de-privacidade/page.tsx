@@ -5,9 +5,17 @@ import { DelayedReveal } from "@/components/react-bits/delayed-reveal";
 import { SplitText } from "@/components/react-bits/split-text";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidade | Móveis Gonçalves",
+  title: "Política de Privacidade",
   description: "Saiba como o site institucional da Móveis Gonçalves trata informações de navegação e contato.",
-  alternates: { canonical: absoluteUrl("/politica-de-privacidade") },
+  alternates: {
+    canonical: absoluteUrl("/politica-de-privacidade"),
+    languages: { "pt-BR": absoluteUrl("/politica-de-privacidade") },
+  },
+  openGraph: {
+    title: "Política de Privacidade | Móveis Gonçalves",
+    description: "Informações sobre privacidade e tratamento de dados no site da Móveis Gonçalves.",
+    url: absoluteUrl("/politica-de-privacidade"),
+  },
 };
 
 export default function PrivacyPage() {
@@ -21,7 +29,7 @@ export default function PrivacyPage() {
           className="page-title mt-5 text-balance"
           threshold={0.02}
         />
-        <DelayedReveal className="mt-6" delay={0.5}>
+        <DelayedReveal className="mt-6" delay={0.24}>
           <p className="text-base leading-7 text-[var(--text-secondary)]">
             Esta página explica, de forma simples, como o site institucional da Móveis Gonçalves lida com informações
             durante a navegação.
@@ -62,6 +70,7 @@ export default function PrivacyPage() {
 
         <Link
           href="/"
+          prefetch={false}
           className="mt-12 inline-flex min-h-11 items-center border border-[var(--brand-red)] px-5 text-sm font-semibold text-[var(--brand-red-dark)]"
         >
           Voltar à página inicial

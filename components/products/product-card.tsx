@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Images } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { Product } from "@/data/products";
+import { ResponsiveImage } from "@/components/shared/responsive-image";
 
 type ProductCardProps = {
   product: Product;
@@ -40,19 +40,17 @@ export function ProductCard({ product }: ProductCardProps) {
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-[var(--surface-warm)]">
         {product.images.isolated ? (
-          <Image
+          <ResponsiveImage
             src={product.images.isolated}
             alt={`${product.type} ${product.name} em imagem isolada`}
-            fill
             sizes="(min-width: 1280px) 25vw, (min-width: 720px) 50vw, 100vw"
             className="product-image-isolated object-contain p-7 transition-[opacity,transform] duration-500 motion-reduce:transition-none"
           />
         ) : null}
         {hasAmbient && ambientReady ? (
-          <Image
+          <ResponsiveImage
             src={product.images.ambient!}
             alt={`${product.type} ${product.name} em ambiente decorado`}
-            fill
             sizes="(min-width: 1280px) 25vw, (min-width: 720px) 50vw, 100vw"
             className="product-image-ambient object-cover opacity-0 transition-[opacity,transform] duration-500 motion-reduce:transition-none"
           />
@@ -77,6 +75,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <h2 className="text-xl font-semibold tracking-[-0.025em] text-[var(--text-primary)]">
           <Link
             href={`/produtos/${product.slug}`}
+            prefetch={false}
             className="focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--brand-red)]"
           >
             {product.name}
@@ -104,6 +103,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
         <Link
           href={`/produtos/${product.slug}`}
+          prefetch={false}
           className="group mt-6 inline-flex min-h-11 items-center justify-between border-t border-[var(--border)] pt-4 text-sm font-semibold text-[var(--brand-red-dark)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--brand-red)]"
         >
           Ver detalhes

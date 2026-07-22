@@ -21,7 +21,10 @@ export function withBasePath(path: string) {
 
 export function absoluteUrl(path = "/") {
   if (/^https?:\/\//i.test(path)) return path;
-  return new URL(withBasePath(path), `${siteOrigin}/`).toString();
+  const url = new URL(withBasePath(path), `${siteOrigin}/`);
+  const finalSegment = url.pathname.split("/").at(-1) ?? "";
+  if (!url.pathname.endsWith("/") && !finalSegment.includes(".")) url.pathname += "/";
+  return url.toString();
 }
 
 export const siteRootUrl = absoluteUrl("/");

@@ -25,14 +25,28 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
   const product = productBySlug.get(slug);
   if (!product) return {};
   const socialImage = product.images.ambient ?? product.images.isolated;
+  const description =
+    product.description ??
+    `${product.type} ${product.name}, da Móveis Gonçalves. Consulte medidas, acabamentos e imagens do produto.`;
 
   return {
-    title: `${product.name} | Móveis Gonçalves`,
-    description: `Conheça o ${product.name}, suas medidas e acabamentos disponíveis.`,
-    alternates: { canonical: absoluteUrl(`/produtos/${product.slug}`) },
+    title: `${product.type} ${product.name}`,
+    description,
+    alternates: {
+      canonical: absoluteUrl(`/produtos/${product.slug}`),
+      languages: { "pt-BR": absoluteUrl(`/produtos/${product.slug}`) },
+    },
     openGraph: {
-      title: `${product.name} | Móveis Gonçalves`,
-      description: `Conheça o ${product.name}, suas medidas e acabamentos disponíveis.`,
+      title: `${product.type} ${product.name} | Móveis Gonçalves`,
+      description,
+      url: absoluteUrl(`/produtos/${product.slug}`),
+      type: "website",
+      images: socialImage ? [absoluteUrl(socialImage)] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.type} ${product.name} | Móveis Gonçalves`,
+      description,
       images: socialImage ? [absoluteUrl(socialImage)] : [],
     },
   };
@@ -46,20 +60,51 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   const related = products
     .filter((item) => item.category === product.category && item.id !== product.id)
     .slice(0, 3);
+  const productDescription =
+    product.description ??
+    `${product.type} modular ${product.name}, com medidas e acabamentos conforme o catálogo oficial da Móveis Gonçalves.`;
+  const pageUrl = absoluteUrl(`/produtos/${product.slug}`);
   const productSchema = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    category: categoryLabels[product.category],
-    image: [product.images.isolated, product.images.ambient]
-      .filter((image): image is string => Boolean(image))
-      .map(absoluteUrl),
-    brand: { "@type": "Brand", name: "Móveis Gonçalves" },
-    additionalProperty: product.dimensions.flatMap((dimension) => [
-      { "@type": "PropertyValue", name: "Altura", value: dimension.height },
-      { "@type": "PropertyValue", name: "Largura", value: dimension.width },
-      { "@type": "PropertyValue", name: "Profundidade", value: dimension.depth },
-    ]),
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": `${pageUrl}#product`,
+        name: `${product.type} ${product.name}`,
+        model: product.name,
+        sku: product.id,
+        url: pageUrl,
+        description: productDescription,
+        category: categoryLabels[product.category],
+        image: [product.images.isolated, product.images.ambient]
+          .filter((image): image is string => Boolean(image))
+          .map(absoluteUrl),
+        brand: { "@type": "Brand", name: "Móveis Gonçalves" },
+        manufacturer: { "@id": `${absoluteUrl("/")}#organization` },
+        color: product.finishes.map((finish) => finish.name),
+        additionalProperty: [
+          ...product.dimensions.flatMap((dimension) => [
+            { "@type": "PropertyValue", name: "Altura", value: dimension.height },
+            { "@type": "PropertyValue", name: "Largura", value: dimension.width },
+            { "@type": "PropertyValue", name: "Profundidade", value: dimension.depth },
+          ]),
+          ...product.finishes.map((finish) => ({
+            "@type": "PropertyValue",
+            name: "Acabamento",
+            value: finish.name,
+          })),
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Início", item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Produtos", item: absoluteUrl("/produtos") },
+          { "@type": "ListItem", position: 3, name: product.name, item: pageUrl },
+        ],
+      },
+    ],
   };
 
   return (
@@ -69,7 +114,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         <nav aria-label="Caminho de navegação" className="mb-6 sm:mb-8">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-[var(--text-secondary)]">
             <li>
-              <Link href="/" className="hover:text-[var(--brand-red-dark)]">
+              <Link href="/" prefetch={false} className="hover:text-[var(--brand-red-dark)]">
                 Início
               </Link>
             </li>
@@ -77,7 +122,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               <ChevronRight className="size-4" />
             </li>
             <li>
-              <Link href="/produtos" className="hover:text-[var(--brand-red-dark)]">
+              <Link href="/produtos" prefetch={false} className="hover:text-[var(--brand-red-dark)]">
                 Produtos
               </Link>
             </li>
@@ -103,7 +148,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               className="page-title mt-4 text-balance"
               threshold={0.02}
             />
-            <DelayedReveal className="mt-3" delay={0.52}>
+            <DelayedReveal className="mt-3" delay={0.22}>
               <p className="text-lg font-medium text-[var(--text-secondary)]">{product.type}</p>
               <p className="mt-6 text-base leading-7 text-[var(--text-secondary)]">
                 {product.description ??
@@ -116,7 +161,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               <div className="mt-4 min-w-0 overflow-x-auto">
                 <table className="responsive-table w-full table-fixed border-collapse text-left text-xs sm:text-sm">
                   <thead>
-                    <tr className="border-b border-[var(--border)] text-[var(--text-muted)]">
+                    <tr className="border-b border-[var(--border)] text-[var(--text-secondary)]">
                       {product.dimensions.some((dimension) => dimension.label) ? <th className="py-3 pr-4 font-semibold">Modelo</th> : null}
                       <th className="py-3 pr-4 font-semibold">Altura</th>
                       <th className="py-3 pr-4 font-semibold">Largura</th>

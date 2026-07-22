@@ -1,10 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 type DelayedRevealProps = {
   children: ReactNode;
@@ -14,53 +11,49 @@ type DelayedRevealProps = {
   amount?: number;
 };
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
-
 export function DelayedReveal({
   children,
   className = "",
-  delay = 0.58,
+  delay = 0.24,
   distance = 8,
-  amount = 0.25,
+  amount = 0.2,
 }: DelayedRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      const element = ref.current;
-      if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-      const animation = gsap.fromTo(
-        element,
-        { autoAlpha: 0, y: distance },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.48,
-          delay,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: element,
-            start: `top ${Math.round((1 - amount) * 100)}%`,
-            once: true,
-            fastScrollEnd: true,
+    let animation: Animation | undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        animation = element.animate(
+          [
+            { opacity: 0, transform: `translateY(${distance}px)` },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          {
+            duration: 440,
+            delay: delay * 1000,
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+            fill: "both",
           },
-        },
-      );
+        );
+        observer.disconnect();
+      },
+      { threshold: Math.min(Math.max(amount, 0.01), 0.5), rootMargin: "0px 0px -5% 0px" },
+    );
+    observer.observe(element);
 
-      return () => {
-        animation.scrollTrigger?.kill();
-        animation.kill();
-      };
-    },
-    { dependencies: [delay, distance, amount], scope: ref },
-  );
+    return () => {
+      observer.disconnect();
+      animation?.cancel();
+    };
+  }, [amount, delay, distance]);
 
   return (
-    <div
-      ref={ref}
-      className={className}
-    >
+    <div ref={ref} className={className}>
       {children}
     </div>
   );
