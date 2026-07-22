@@ -25,7 +25,7 @@ export default function ProductsPage() {
               encontrar a solução ideal para sua casa.
             </p>
           </div>
-          <div className="relative min-h-[240px] sm:min-h-[300px] lg:col-span-5 lg:min-h-[430px]">
+          <div className="relative min-h-[240px] overflow-hidden sm:min-h-[300px] lg:col-span-5 lg:min-h-[430px]">
             <div className="absolute inset-y-0 left-[18%] w-px bg-[var(--brand-red)]/35" />
             <div className="absolute inset-x-0 bottom-0 h-[78%] bg-[var(--surface)]" />
             <Image
@@ -34,7 +34,7 @@ export default function ProductsPage() {
               fill
               priority
               sizes="(min-width: 1024px) 40vw, 100vw"
-              className="object-contain p-5"
+              className="translate-y-[12%] object-contain p-5"
             />
           </div>
         </div>
