@@ -1,7 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 type DelayedRevealProps = {
   children: ReactNode;
@@ -11,7 +14,7 @@ type DelayedRevealProps = {
   amount?: number;
 };
 
-const revealEase = [0.22, 1, 0.36, 1] as const;
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export function DelayedReveal({
   children,
@@ -20,17 +23,45 @@ export function DelayedReveal({
   distance = 8,
   amount = 0.25,
 }: DelayedRevealProps) {
-  const reduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const element = ref.current;
+      if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      const animation = gsap.fromTo(
+        element,
+        { autoAlpha: 0, y: distance },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.48,
+          delay,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: element,
+            start: `top ${Math.round((1 - amount) * 100)}%`,
+            once: true,
+            fastScrollEnd: true,
+          },
+        },
+      );
+
+      return () => {
+        animation.scrollTrigger?.kill();
+        animation.kill();
+      };
+    },
+    { dependencies: [delay, distance, amount], scope: ref },
+  );
 
   return (
-    <motion.div
+    <div
+      ref={ref}
       className={className}
-      initial={reduceMotion ? false : { opacity: 0, y: distance }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount }}
-      transition={{ delay, duration: 0.48, ease: revealEase }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
