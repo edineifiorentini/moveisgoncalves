@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { company } from "@/data/company";
 import { navigation, socialLinks } from "@/data/navigation";
 import { withBasePath } from "@/lib/site";
@@ -39,16 +40,36 @@ export function Footer() {
         <div className="md:col-span-4 lg:col-span-5">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-white/50">Contato</p>
           <address className="space-y-3 text-sm not-italic leading-6 text-white/75">
-            <p>{company.address}</p>
-            <a className="block hover:text-white" href={`mailto:${company.email}`}>
-              {company.email}
+            <p className="flex items-start gap-3">
+              <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0 text-[var(--brand-red)]" />
+              <span>{company.address}</span>
+            </p>
+            <a className="flex items-center gap-3 hover:text-white" href="tel:+5544991158630">
+              <Phone aria-hidden="true" className="size-4 shrink-0 text-[var(--brand-red)]" />
+              {company.phones[0]}
+            </a>
+            <a className="flex items-center gap-3 break-all hover:text-white" href={`mailto:${company.email}`}>
+              <Mail aria-hidden="true" className="size-4 shrink-0 text-[var(--brand-red)]" />
+              <span>{company.email}</span>
             </a>
           </address>
           {visibleSocialLinks.length ? (
-            <ul className="mt-6 flex gap-4">
+            <ul className="mt-6 flex flex-wrap gap-3">
               {visibleSocialLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.url}>{link.label}</a>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-11 items-center gap-2 border border-white/20 px-3.5 text-sm text-white/75 transition-colors hover:border-white/50 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white"
+                  >
+                    {link.label === "Instagram" ? (
+                      <Instagram aria-hidden="true" className="size-4" />
+                    ) : (
+                      <MessageCircle aria-hidden="true" className="size-4" />
+                    )}
+                    {link.label === "Instagram" ? company.instagram.handle : link.label}
+                  </a>
                 </li>
               ))}
             </ul>

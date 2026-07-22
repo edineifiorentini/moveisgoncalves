@@ -8,7 +8,7 @@ export function RepresentativesSection() {
         <SectionHeading
           eyebrow="Atendimento comercial"
           title="Encontre o representante da sua região."
-          description="Fale com nossa equipe para conhecer a linha de produtos, consultar disponibilidade e encontrar o atendimento mais próximo."
+          description="Conheça o atendimento da sua região. As solicitações pelo WhatsApp são encaminhadas diretamente ao canal oficial da fábrica."
           className="lg:col-span-4"
         />
         <div className="lg:col-span-8">

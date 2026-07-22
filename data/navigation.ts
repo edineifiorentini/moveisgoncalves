@@ -8,7 +8,6 @@ export const navigation = [
 ];
 
 export const socialLinks = [
-  { label: "Instagram", url: "" },
-  { label: "Facebook", url: "" },
-  { label: "WhatsApp", url: "" },
+  { label: "Instagram", url: "https://www.instagram.com/moveisgoncalves.fabrica/" },
+  { label: "WhatsApp", url: "https://wa.me/5544991158630" },
 ];

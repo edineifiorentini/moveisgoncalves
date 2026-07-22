@@ -500,6 +500,10 @@ a {
   :root {
     --header-height: 88px;
   }
+
+  .product-spotlight {
+    min-height: 450px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

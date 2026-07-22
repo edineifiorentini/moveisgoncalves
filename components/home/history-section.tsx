@@ -26,12 +26,12 @@ export function HistorySection() {
               80 m² e com produção artesanal. O que começou pequeno cresceu com dedicação, investimento e
               compromisso com as famílias que levam nossos móveis para dentro de casa.
             </p>
-          </div>
-          <div className="space-y-5 text-base leading-7 text-[var(--text-secondary)] lg:col-span-4">
             <p>
               Hoje, contamos com uma fábrica de aproximadamente 2.000 m², equipada com máquinas modernas que
               proporcionam mais precisão, eficiência e qualidade em cada etapa da produção.
             </p>
+          </div>
+          <div className="space-y-5 text-base leading-7 text-[var(--text-secondary)] lg:col-span-4">
             <p>
               Mesmo com toda essa evolução, mantemos o princípio que orienta nosso trabalho desde o início:
               oferecer móveis funcionais, bem construídos e acessíveis, capazes de valorizar o lar e facilitar a
@@ -46,9 +46,13 @@ export function HistorySection() {
             return (
               <article
                 key={stat.title}
-                className="border-b border-[var(--border)] px-0 py-6 last:border-b-0 sm:px-6 sm:[&:nth-child(odd)]:border-r sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0"
+                className="group border-b border-[var(--border)] px-0 py-6 last:border-b-0 sm:px-6 sm:[&:nth-child(odd)]:border-r sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0"
               >
-                <Icon aria-hidden="true" strokeWidth={1.4} className="size-8 text-[var(--brand-red)]" />
+                <Icon
+                  aria-hidden="true"
+                  strokeWidth={1.4}
+                  className="size-8 origin-center text-[var(--brand-red)] transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none"
+                />
                 <h3 className="mt-5 font-semibold tracking-[-0.02em]">{stat.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{stat.description}</p>
               </article>

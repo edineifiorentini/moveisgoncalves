@@ -76,7 +76,7 @@ export function HeroCarousel() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,17,14,.76)_0%,rgba(20,17,14,.48)_42%,rgba(20,17,14,.08)_72%)]" />
       </div>
 
-      <div className="site-container relative z-10 flex min-h-[calc(760px-var(--header-height))] items-center py-10 sm:min-h-[calc(720px-var(--header-height))] sm:py-12 lg:min-h-[calc(800px-var(--header-height))] lg:py-14">
+      <div className="site-container relative z-10 flex min-h-[calc(760px-var(--header-height))] items-center pb-32 pt-8 sm:min-h-[calc(720px-var(--header-height))] sm:pb-32 sm:pt-10 lg:min-h-[calc(800px-var(--header-height))] lg:pb-36 lg:pt-12">
         <div className="hero-copy-panel max-w-[650px] text-white">
           <p className="eyebrow text-white/75">Móveis modulares desde 1990</p>
           <h1 className="hero-title mt-5 max-w-[12ch] text-balance">
@@ -95,7 +95,7 @@ export function HeroCarousel() {
         </div>
       </div>
 
-      <div className="site-container absolute inset-x-0 bottom-5 z-20 flex items-center justify-between text-white sm:bottom-7">
+      <div className="site-container absolute inset-x-0 bottom-6 z-20 flex items-center justify-between text-white sm:bottom-8">
         <div className="flex items-center gap-2" aria-label={`Slide ${active + 1} de ${heroSlides.length}`}>
           {heroSlides.map((slide, index) => (
             <button

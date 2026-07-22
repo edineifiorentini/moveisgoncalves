@@ -9,7 +9,7 @@ export function CategorySection() {
   return (
     <section className="section-space bg-[var(--background)]" aria-labelledby="categorias-title">
       <div className="site-container grid gap-12 xl:grid-cols-12 xl:gap-10">
-        <div className="md:grid md:grid-cols-[minmax(0,1fr)_minmax(280px,0.85fr)] md:items-end md:gap-8 xl:col-span-4 xl:block">
+        <div className="md:grid md:grid-cols-[minmax(0,1fr)_minmax(280px,0.85fr)] md:items-end md:gap-8 xl:col-span-4 xl:flex xl:h-full xl:items-stretch xl:flex-col">
           <div>
             <div id="categorias-title">
               <SectionHeading
@@ -27,7 +27,7 @@ export function CategorySection() {
             </Link>
           </div>
 
-          <div className="mt-10 max-w-[430px] md:mt-0 xl:mt-12">
+          <div className="mt-10 max-w-[430px] md:mt-0 xl:mt-auto xl:w-full xl:max-w-none xl:pt-12">
             <ProductSpotlight />
           </div>
         </div>

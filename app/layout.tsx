@@ -52,12 +52,13 @@ const organizationSchema = {
   foundingDate: String(company.founded),
   email: company.email,
   telephone: company.phones,
+  sameAs: [company.instagram.url],
   address: {
     "@type": "PostalAddress",
     streetAddress: "R. Lapa, 1713",
-    postalCode: "87830-000",
     addressLocality: "Tapira",
     addressRegion: "PR",
+    postalCode: "87830-000",
     addressCountry: "BR",
   },
 };

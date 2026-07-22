@@ -1,8 +1,16 @@
 "use client";
 
-import { ChevronDown, MapPin, MessageCircle, ShieldAlert } from "lucide-react";
+import { ChevronDown, MapPin, MessageCircle } from "lucide-react";
 import { useState } from "react";
+import { company } from "@/data/company";
 import { territories } from "@/data/representatives";
+
+function companyWhatsappUrl(representative: string, region: string) {
+  const message = encodeURIComponent(
+    `Olá! Gostaria de atendimento com ${representative}, representante da região ${region}.`,
+  );
+  return `${company.whatsappUrl}?text=${message}`;
+}
 
 export function RepresentativesAccordion() {
   const [openId, setOpenId] = useState<string | null>(territories[0]?.id ?? null);
@@ -53,34 +61,19 @@ export function RepresentativesAccordion() {
                           {representative.phone}
                         </p>
                       </div>
-                      {representative.validated && representative.whatsappUrl ? (
-                        <a
-                          href={representative.whatsappUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label={`Falar com ${representative.name} pelo WhatsApp`}
-                          className="inline-flex min-h-11 items-center justify-center gap-2 border border-[var(--brand-red)] px-4 text-sm font-semibold text-[var(--brand-red-dark)]"
-                        >
-                          <MessageCircle aria-hidden="true" className="size-4" />
-                          WhatsApp
-                        </a>
-                      ) : (
-                        <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-2">
-                          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-secondary)]">
-                            <ShieldAlert aria-hidden="true" className="size-4 text-[var(--brand-red)]" />
-                            Contato em revisão
-                          </span>
-                          <button
-                            type="button"
-                            disabled
-                            aria-label={`WhatsApp de ${representative.name} indisponível enquanto o contato é revisado`}
-                            className="inline-flex min-h-11 cursor-not-allowed items-center justify-center gap-2 border border-[var(--border)] bg-white px-4 text-sm font-semibold text-[var(--text-muted)]"
-                          >
-                            <MessageCircle aria-hidden="true" className="size-4" />
-                            WhatsApp
-                          </button>
-                        </div>
-                      )}
+                      <a
+                        href={companyWhatsappUrl(representative.name, territory.region)}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`Solicitar atendimento com ${representative.name} pelo WhatsApp oficial da Móveis Gonçalves`}
+                        className="group inline-flex min-h-11 items-center justify-center gap-2 border border-[var(--brand-red)] px-4 text-sm font-semibold text-[var(--brand-red-dark)] transition-colors hover:bg-[var(--brand-red)] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--brand-red)]"
+                      >
+                        <MessageCircle
+                          aria-hidden="true"
+                          className="size-4 transition-transform group-hover:scale-110 motion-reduce:transition-none"
+                        />
+                        WhatsApp
+                      </a>
                     </article>
                   ))}
                 </div>
