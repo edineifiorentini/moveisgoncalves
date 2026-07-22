@@ -26,7 +26,7 @@ export function FinalCta() {
               text="Qualidade e funcionalidade para transformar a sua casa."
               className="section-title mt-4 text-balance"
             />
-            <DelayedReveal className="mt-6" delay={1.18}>
+            <DelayedReveal className="mt-6" delay={0.62}>
               <p className="text-base leading-7 text-[var(--text-secondary)] md:text-lg">
                 Conheça nossa linha de móveis modulares e encontre soluções que combinam com o seu espaço, sua rotina
                 e o seu jeito de viver.

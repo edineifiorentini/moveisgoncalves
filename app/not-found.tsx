@@ -8,7 +8,7 @@ export default function NotFound() {
       <div>
         <p className="eyebrow">Página não encontrada</p>
         <SplitText tag="h1" text="Este caminho não existe." className="page-title mt-4" textAlign="center" />
-        <DelayedReveal className="mt-5" delay={1.02}>
+        <DelayedReveal className="mt-5" delay={0.5}>
           <p className="text-[var(--text-secondary)]">Volte à página inicial ou explore nosso catálogo de produtos.</p>
         </DelayedReveal>
         <div className="mt-8 flex flex-wrap justify-center gap-3">

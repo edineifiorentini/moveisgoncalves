@@ -75,15 +75,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {children}
         <Footer />
         <GradualBlur
-          fixed
+          target="page"
           position="bottom"
-          height="clamp(5.5rem, 11vw, 8.5rem)"
-          strength={3.2}
-          divCount={8}
+          height="7rem"
+          strength={2}
+          divCount={5}
           curve="bezier"
           exponential
-          opacity={0.94}
-          tint="rgba(248, 245, 241, 0.2)"
+          opacity={1}
           zIndex={40}
         />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />

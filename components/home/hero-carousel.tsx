@@ -89,7 +89,7 @@ export function HeroCarousel() {
             duration={0.9}
             threshold={0.02}
           />
-          <DelayedReveal className="mt-6" delay={1.3}>
+          <DelayedReveal className="mt-6" delay={0.72}>
             <p className="max-w-[54ch] text-base leading-7 text-white/82 md:text-lg md:leading-8">
               Móveis modulares para cozinhas, áreas de serviço, quartos e salas, desenvolvidos para trazer mais
               praticidade, organização e beleza para o dia a dia.

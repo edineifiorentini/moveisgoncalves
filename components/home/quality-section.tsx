@@ -23,7 +23,7 @@ export function QualitySection() {
             text="Feitos para o dia a dia. Pensados para durar."
             className="section-title mt-4 text-balance"
           />
-          <DelayedReveal className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]" delay={1.22}>
+          <DelayedReveal className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]" delay={0.64}>
             <p>
               Cada móvel é desenvolvido para unir aproveitamento inteligente de espaço, funcionalidade e bom
               acabamento. O sistema modular permite criar diferentes composições e encontrar soluções adequadas
@@ -67,7 +67,7 @@ export function QualitySection() {
             text="Crescer também é produzir com mais responsabilidade."
             className="quality-title mt-4 text-balance"
           />
-          <DelayedReveal className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]" delay={1.22}>
+          <DelayedReveal className="mt-6 space-y-5 text-base leading-7 text-[var(--text-secondary)]" delay={0.64}>
             <p>
               Investimos em energia solar para tornar nossa operação mais eficiente e reduzir o impacto ambiental
               da produção.

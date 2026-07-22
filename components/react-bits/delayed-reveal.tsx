@@ -16,8 +16,8 @@ const revealEase = [0.22, 1, 0.36, 1] as const;
 export function DelayedReveal({
   children,
   className = "",
-  delay = 1.12,
-  distance = 12,
+  delay = 0.58,
+  distance = 8,
   amount = 0.25,
 }: DelayedRevealProps) {
   const reduceMotion = useReducedMotion();
@@ -28,7 +28,7 @@ export function DelayedReveal({
       initial={reduceMotion ? false : { opacity: 0, y: distance }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount }}
-      transition={{ delay, duration: 0.62, ease: revealEase }}
+      transition={{ delay, duration: 0.48, ease: revealEase }}
     >
       {children}
     </motion.div>

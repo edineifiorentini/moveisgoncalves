@@ -103,7 +103,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               className="page-title mt-4 text-balance"
               threshold={0.02}
             />
-            <DelayedReveal className="mt-3" delay={1.05}>
+            <DelayedReveal className="mt-3" delay={0.52}>
               <p className="text-lg font-medium text-[var(--text-secondary)]">{product.type}</p>
               <p className="mt-6 text-base leading-7 text-[var(--text-secondary)]">
                 {product.description ??

@@ -2,16 +2,16 @@ import type { CSSProperties } from "react";
 import styles from "./gradual-blur.module.css";
 
 type GradualBlurProps = {
-  position?: "top" | "bottom";
-  fixed?: boolean;
+  target?: "parent" | "page";
+  position?: "top" | "bottom" | "left" | "right";
   height?: string;
+  width?: string;
   strength?: number;
   divCount?: number;
   curve?: "linear" | "bezier" | "ease-in";
   exponential?: boolean;
   opacity?: number;
   zIndex?: number;
-  tint?: string;
   className?: string;
 };
 
@@ -22,43 +22,53 @@ const curveFunctions = {
 };
 
 export function GradualBlur({
+  target = "parent",
   position = "top",
-  fixed = false,
   height = "7rem",
+  width,
   strength = 2,
   divCount = 6,
   curve = "bezier",
   exponential = true,
   opacity = 0.9,
   zIndex = 2,
-  tint = "transparent",
   className = "",
 }: GradualBlurProps) {
   const increment = 100 / divCount;
   const curveFunction = curveFunctions[curve];
-  const direction = position === "top" ? "to top" : "to bottom";
-  const tintDirection = position === "top" ? "to top" : "to bottom";
+  const direction = {
+    top: "to top",
+    bottom: "to bottom",
+    left: "to left",
+    right: "to right",
+  }[position];
+  const isVertical = position === "top" || position === "bottom";
+  const positionStyle: CSSProperties = isVertical
+    ? { [position]: 0, insetInline: 0, width: width ?? "100%", height }
+    : { [position]: 0, insetBlock: 0, width: width ?? height, height: "100%" };
 
   return (
     <div
       aria-hidden="true"
       className={`${styles.root} ${className}`}
       style={{
-        position: fixed ? "fixed" : "absolute",
-        insetInline: 0,
-        [position]: 0,
-        height,
+        position: target === "page" ? "fixed" : "absolute",
         zIndex,
-        background: `linear-gradient(${tintDirection}, transparent 0%, ${tint} 100%)`,
+        ...positionStyle,
       }}
     >
       {Array.from({ length: divCount }, (_, index) => {
-        const progress = curveFunction((index + 1) / divCount);
+        const layer = index + 1;
+        const progress = curveFunction(layer / divCount);
         const blur = exponential ? Math.pow(2, progress * 4) * 0.0625 * strength : progress * strength;
-        const start = Math.max(0, increment * index);
-        const middle = Math.min(100, increment * (index + 1));
-        const end = Math.min(100, increment * (index + 2));
-        const mask = `linear-gradient(${direction}, transparent ${start}%, black ${middle}%, transparent ${end}%)`;
+        const p1 = Math.round((increment * layer - increment) * 10) / 10;
+        const p2 = Math.round(increment * layer * 10) / 10;
+        const p3 = Math.round((increment * layer + increment) * 10) / 10;
+        const p4 = Math.round((increment * layer + increment * 2) * 10) / 10;
+        let gradient = `transparent ${p1}%, black ${p2}%`;
+        if (p3 <= 100) gradient += `, black ${p3}%`;
+        if (p4 <= 100) gradient += `, transparent ${p4}%`;
+        const mask = `linear-gradient(${direction}, ${gradient})`;
         const layerStyle: CSSProperties = {
           backdropFilter: `blur(${blur.toFixed(3)}rem)`,
           WebkitBackdropFilter: `blur(${blur.toFixed(3)}rem)`,
@@ -67,7 +77,7 @@ export function GradualBlur({
           opacity,
         };
 
-        return <span key={index} className={styles.layer} style={layerStyle} />;
+        return <span key={layer} className={styles.layer} style={layerStyle} />;
       })}
     </div>
   );

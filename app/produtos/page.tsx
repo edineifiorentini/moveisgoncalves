@@ -27,7 +27,7 @@ export default function ProductsPage() {
               className="page-title mt-5 max-w-[13ch] text-balance"
               threshold={0.02}
             />
-            <DelayedReveal className="mt-6" delay={1.24}>
+            <DelayedReveal className="mt-6" delay={0.64}>
               <p className="max-w-[60ch] text-base leading-7 text-[var(--text-secondary)] md:text-lg md:leading-8">
                 Explore nossa linha de móveis modulares e filtre por ambiente, tipo, medidas ou acabamento para
                 encontrar a solução ideal para sua casa.

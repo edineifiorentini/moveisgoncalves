@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           className="page-title mt-5 text-balance"
           threshold={0.02}
         />
-        <DelayedReveal className="mt-6" delay={1.02}>
+        <DelayedReveal className="mt-6" delay={0.5}>
           <p className="text-base leading-7 text-[var(--text-secondary)]">
             Esta página explica, de forma simples, como o site institucional da Móveis Gonçalves lida com informações
             durante a navegação.

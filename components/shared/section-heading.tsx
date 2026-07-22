@@ -26,7 +26,7 @@ export function SectionHeading({
         textAlign={align}
       />
       {description ? (
-        <DelayedReveal className="mt-5" delay={1.12}>
+        <DelayedReveal className="mt-5" delay={0.58}>
           <p className="max-w-2xl text-base leading-7 text-[var(--text-secondary)] md:text-lg">{description}</p>
         </DelayedReveal>
       ) : null}
