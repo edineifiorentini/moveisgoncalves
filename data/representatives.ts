@@ -15,7 +15,7 @@ export const territories: Territory[] = [
     id: "parana-noroeste",
     region: "Paraná — Noroeste",
     representatives: [
-      { name: "Waldir Américo Sinti", phone: "(44) 98402-9723" },
+      { name: "Waldir Américo Sinti", phone: "(44) 998402-9723" },
       { name: "Adivaldo Girotto", phone: "(44) 99967-5050" },
     ],
   },
