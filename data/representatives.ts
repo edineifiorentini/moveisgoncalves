@@ -15,44 +15,44 @@ export const territories: Territory[] = [
     id: "parana-noroeste",
     region: "Paraná — Noroeste",
     representatives: [
-      { name: "Waldir Américo Sinti", phone: "(44) 9.98402-9723" },
-      { name: "Adivaldo Girotto", phone: "(44) 9.9967-5050" },
+      { name: "Waldir Américo Sinti", phone: "(44) 98402-9723" },
+      { name: "Adivaldo Girotto", phone: "(44) 99967-5050" },
     ],
   },
   {
     id: "parana-curitiba",
     region: "Paraná — Curitiba e região",
     representatives: [
-      { name: "Helton Luiz dos Santos", phone: "(41) 9.99877-0683" },
+      { name: "Helton Luiz dos Santos", phone: "(41) 99877-0683" },
     ],
   },
   {
     id: "mato-grosso-do-sul",
     region: "Mato Grosso do Sul",
     representatives: [
-      { name: "Francielle M. Migliorini", phone: "(44) 9.9938-7351" },
-      { name: "Jean", phone: "(44) 9.9133-2021" },
+      { name: "Francielle M. Migliorini", phone: "(44) 99938-7351" },
+      { name: "Jean", phone: "(44) 99133-2021" },
     ],
   },
   {
     id: "santa-catarina",
     region: "Santa Catarina",
     representatives: [
-      { name: "Jean", phone: "(44) 9.9133-2021" },
+      { name: "Jean", phone: "(44) 99133-2021" },
     ],
   },
   {
     id: "sao-paulo",
     region: "São Paulo",
     representatives: [
-      { name: "Luis Enrique Vila", phone: "(17) 9.98115-0078" },
+      { name: "Luis Enrique Vila", phone: "(17) 98115-0078" },
     ],
   },
   {
     id: "parana",
     region: "Paraná",
     representatives: [
-      { name: "Vitor Barreto Gouveia", phone: "(44) 9.9133-3335" },
+      { name: "Vitor Barreto Gouveia", phone: "(44) 99133-3335" },
     ],
   },
   {
@@ -61,7 +61,7 @@ export const territories: Territory[] = [
     representatives: [
       {
         name: "Sebastião Colli",
-        phone: "(43) 9.9111-4161",
+        phone: "(43) 99111-4161",
       },
     ],
   },
