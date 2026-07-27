@@ -47,8 +47,13 @@ export const metadata: Metadata = {
     "geo.placename": "Tapira",
   },
   icons: {
-    icon: absoluteUrl("/favicon.svg"),
-    shortcut: absoluteUrl("/favicon.svg"),
+    icon: [
+      { url: withBasePath("/favicon.ico"), sizes: "32x32" },
+      { url: withBasePath("/favicon-32.png"), sizes: "32x32", type: "image/png" },
+      { url: withBasePath("/favicon-192.png"), sizes: "192x192", type: "image/png" },
+    ],
+    shortcut: withBasePath("/favicon.ico"),
+    apple: [{ url: withBasePath("/apple-touch-icon.png"), sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     type: "website",
