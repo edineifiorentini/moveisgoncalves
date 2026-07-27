@@ -31,6 +31,14 @@ export const territories: Territory[] = [
     region: "Mato Grosso do Sul",
     representatives: [
       { name: "Francielle M. Migliorini", phone: "(44) 9.9938-7351" },
+      { name: "Jean", phone: "(44) 9.9133-2021" },
+    ],
+  },
+  {
+    id: "santa-catarina",
+    region: "Santa Catarina",
+    representatives: [
+      { name: "Jean", phone: "(44) 9.9133-2021" },
     ],
   },
   {
@@ -52,9 +60,8 @@ export const territories: Territory[] = [
     region: "Norte Velho do Paraná",
     representatives: [
       {
-        name: "Antônio Octávio",
-        phone: "(44) 9.9915-2240",
-        base: "Maringá-PR",
+        name: "Sebastião Colli",
+        phone: "(43) 9.9111-4161",
       },
     ],
   },

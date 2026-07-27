@@ -2,15 +2,15 @@
 
 import { ChevronDown, MapPin, MessageCircle } from "lucide-react";
 import { useState } from "react";
-import { company } from "@/data/company";
 import { territories } from "@/data/representatives";
 import { AnimatedList } from "@/components/react-bits/animated-list";
 
-function companyWhatsappUrl(representative: string, region: string) {
+function representativeWhatsappUrl(phone: string, representative: string, region: string) {
+  const nationalNumber = phone.replace(/\D/g, "");
   const message = encodeURIComponent(
     `Olá! Gostaria de atendimento com ${representative}, representante da região ${region}.`,
   );
-  return `${company.whatsappUrl}?text=${message}`;
+  return `https://wa.me/55${nationalNumber}?text=${message}`;
 }
 
 export function RepresentativesAccordion() {
@@ -64,7 +64,11 @@ export function RepresentativesAccordion() {
                         </p>
                       </div>
                       <a
-                        href={companyWhatsappUrl(representative.name, territory.region)}
+                        href={representativeWhatsappUrl(
+                          representative.phone,
+                          representative.name,
+                          territory.region,
+                        )}
                         target="_blank"
                         rel="noreferrer"
                         aria-label={`Solicitar atendimento com ${representative.name} pelo WhatsApp oficial da Móveis Gonçalves`}
